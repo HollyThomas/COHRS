@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+import os
+import math
 
 def readdata( filename ):
     f = open( filename )
@@ -7,36 +9,79 @@ def readdata( filename ):
             yield line
 
 
-# Here we only need the first three columns: tile name, the utdate and
+def longlat( string ):
+
+# Extract co-ordinates from the compound string.
+   cols = string.split( '_' )
+
+   long = "{0:06.2f}".format( float( cols[1] ) )
+   lat = "{0:+05.2f}".format( float( cols[2] ) )
+
+   return [long, lat]   
+
+
+def tilename( long, lat ):
+   long = long.replace( ".", "p" )
+   lat = lat.replace( ".", "p" )
+
+   return 'gal_' + long + '_' + lat + '.list'
+
+
+# Here we only need the first three columns: tile name, the utdate, and
 # number of the observation.  Still read in all the data for
 # convenience.
-data = [line.strip().split() for line in readdata( "README_obs.db" )]
+data = [line.strip().split() for line in readdata( "allobsbyposition.txt" )]
 
-# Create a text file for the tile.
+# Create a text file for the tile.  The first column contains the
+# co-ordinate and part of the UT date.  Extract the co-ordinates
+# and format to two decimals with a leading sign for latitude, and
+# substitute p for the decimal point.
 tile = data[0][0]
-filename = tile + '.list'
+coord = longlat( tile )
+long = float ( coord[0] )
+lat = float ( coord[1] )
+prevlong = long
+prevlat = lat
+
+filename = tilename( coord[0], coord[1] )
 f = open( filename, 'w' )
 
 for i in range( len( data ) ):
-    if data[i][0] != tile:
+    coord = longlat( data[i][0] )
+    long = float ( coord[0] )
+    lat = float ( coord[1] )
+    if ( long < 16.75 and long <> prevlong ) or ( long >= 16.75 and ( long <> prevlong or lat <> prevlat ) ):
 
 # Switch to the next tile.
         f.close()
 
+        prevlong = long
+        prevlat = lat
         tile = data[i][0]
-        filename = tile + '.list'
+        coord = longlat( tile )
+        long = float ( coord[0] )
+        lat = float ( coord[1] )
+
+# Do not want offset test positions.
+        if ( math.fabs( lat ) > 1.0 ):
+            continue
+
+# Want all inner regions to be 0.0 latitude.  There are some with
+# negative subtiles that are listed first and hence would name the
+# tile incorrectly.
+        if long < 16.75 and lat < 0.0:
+            coord[1] = "-0.00"
+        filename = tilename( coord[0], coord[1] )
         f = open( filename, 'w' )
 
     utdate = data[i][1]
     obsnum = data[i][2]
 
-# Write the filenames (assuming there are three subfiles).  Some may
-# be different, but the database does not provide this information.
-    for j in range( 3 ):
-        buffer = '/jcmtdata/raw/acsis/spectra/' + data[i][1] + '/' + \
-                 obsnum + '/a' + utdate + '_' + obsnum + '_01_' + \
-                 str( j + 1 ).zfill( 4 ) + '.sdf\n'
-        f.write( buffer )
+# Write the filenames by search the directory.
+    directory = '/jcmtdata/raw/acsis/spectra/' + data[i][1] + '/' + obsnum
+    rawfiles = os.listdir( directory )
+    for file in rawfiles:
+        f.write( directory + '/' + file + '\n' )
 
 f.close()
 
