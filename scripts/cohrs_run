@@ -88,6 +88,10 @@
 #     2012 October 2 (MJC):
 #        Improved file tidying using a loop for each observation.
 #        Add more commentary.
+#     2012 October 4 (MJC):
+#        Removal of some wildcards and test for the existence of the
+#        bad-receptors index before attempting to move it.  Prevent
+#        incorrect -- in the flist for negative non-zero latitudes.
 #     {enter_further_changes_here}
 
 #-
@@ -250,8 +254,10 @@ mv $thumbnail $final_thumbnail
 echo "Created thumbnail ${final_thumbnail}."
 
 # the index of bad receptors from QA, and ...
-mv index.bad_receptors_qa ${final_prefix}bad_receptors_qa
-echo "Created QA bad receptors index ${final_prefix}bad_receptors_qa."
+if ( -e index.bad_receptors_qa ) then
+   mv index.bad_receptors_qa ${final_prefix}bad_receptors_qa
+   echo "Created QA bad receptors index ${final_prefix}bad_receptors_qa."
+endif
 
 # the quality-assurance log.
 mv log.qa ${final_prefix}log.qa
@@ -288,7 +294,7 @@ while ( $count <= $nlines[1] )
       \rm -f ${obs_prefix}rimg_1024.png
       \rm -f ${obs_prefix}rimg_64.png
       \rm -f ${obs_prefix}rms??.sdf
-      \rm -f ${obs_prefix}rvr*.sdf
+      \rm -f ${obs_prefix}rvr001.sdf
       \rm -f ${obs_prefix}rsp.sdf
       \rm -f ${obs_prefix}rsp*.png
       \rm -f ${obs_prefix}sp001.sdf
