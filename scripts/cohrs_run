@@ -21,6 +21,9 @@
 #     The galactic longitude and latitude.  The latter defaults to 0.0.
 
 #  Examples:
+#     cohrs_run 10.5
+#        Produces reduced products for galactic longitude 10.5 degrees.
+#        latitude 0 degrees.
 #     cohrs_run 17.5 -0.37
 #        Produces reduced products for galactic longitude 17.5 degrees.
 #        latitude -0.37 degrees.
@@ -33,9 +36,9 @@
 #  Output:
 #     All the final NDF products have the prefix COHRS_<L>_<B>_
 #     where L and B are the galactic longitude and latitude respectively.
-#     L is formatted 6.2f and B <sign>5.2f , where <sign> is + or -, and 
+#     L is formatted 6.2f and B <sign>5.2f, where <sign> is + or -, and
 #     "p" is substituted for the decimal point.  For instance the name
-#     prefix for the example above would be "COHRS_017p50_-0p37_"
+#     prefix for the example above would be "COHRS_017p50_-0p37_".
 #     -  The reduced spectral cube has suffix CUBE.
 #     -  An integ collapsed image with INTEG suffix.
 #     -  A longitude-velocity image with an LV suffix.
@@ -43,12 +46,17 @@
 #
 #     The following non-NDFs are created too.  These have the same
 #     prefix as the NDFs.
-#     -  The quality-asurance log with suffix log.qa.
-#     -  The index of bad receptors found during QA checks with suffix
-#        bad_receptors_qa
-#     -  The 256-pixel image of the rimg with suffix rimg_256.png
+#     -  The quality-assurance log with suffix log.qa.
+#     -  The index of bad receptors found during QA checks, if one is
+#        created, with suffix bad_receptors_qa.
+#     -  The 256-pixel image of the rimg with suffix rimg_256.png.
 
 #  Prior Requirements:
+
+#  Deficiencies:
+#     - Does not exit cleanly if the pipeline fails.
+#     - Does not rename the ORAC-DR log file to the COHRS format,
+#       because it is not known unambigously.
 
 #  Copyright:
 #     Copyright (C) 2012 Science and Technology Facilitties Council.
@@ -77,6 +85,9 @@
 #  History:
 #     2012 September 26 (MJC):
 #        Original version.
+#     2012 October 2 (MJC):
+#        Improved file tidying using a loop for each observation.
+#        Add more commentary.
 #     {enter_further_changes_here}
 
 #-
@@ -137,7 +148,7 @@ setenv COHRS /home/mjc/cohrs
 set flist = "$COHRS/gal_${longp}_${sign}${latp}.list"
 
 # Check that the file exists, allowing for the default latitude
-# or the user entering 0 when the latitude is -0.  
+# or the user entering 0 when the latitude is -0.
 if ( ! -e $flist ) then
    if ( $latp == "0p00" ) then
       if ( "$sign" == "+" ) then
@@ -166,7 +177,7 @@ echo "Using file $flist for the list of observations."
 # Extract the UT date and observation number from the first line in
 # the file list, which will be the name of the group, since the list
 # date then observation number order.
-set raw = `awk 'BEGIN { FS = "/" }{if (FNR==1) print $NF}' $flist` 
+set raw = `awk 'BEGIN { FS = "/" }{if (FNR==1) print $NF}' $flist`
 set utdate = `echo $raw | awk '{print substr($1,2,8)}'`
 set obsnum = `echo $raw | awk '{printf("%d", substr($1,11,5))}'`
 set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
@@ -174,7 +185,7 @@ set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
 # Remove old files.
 # =================
 
-# Do not want the old QA log as want to save just the results for the 
+# Do not want the old QA log as want to save just the results for the
 # upcoming processing.  Likewise determine bad receptors afresh, not
 # from an old index.
 \rm -f log.qa index.bad_receptors_qa
