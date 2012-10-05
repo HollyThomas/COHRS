@@ -1,0 +1,7 @@
+#!/bin/csh
+alias cohrs_run ~mjc/cohrs/cohrs_run
+rm -f 100s.log
+cohrs_run 108.5 >& 100s.log
+cohrs_run 109.5 >>& 100s.log
+cohrs_run 110.5 >>& 100s.log
+cohrs_run 111.5 >>& 100s.log

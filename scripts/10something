@@ -1,0 +1,26 @@
+#!/bin/csh
+alias cohrs_run ~mjc/cohrs/cohrs_run
+rm -f 10s.log
+cohrs_run 10.5  >& 10s.log
+cohrs_run 11.0 >>& 10s.log
+cohrs_run 11.5 >>& 10s.log
+cohrs_run 12.0 >>& 10s.log
+cohrs_run 12.5 >>& 10s.log
+cohrs_run 13.0 >>& 10s.log
+cohrs_run 13.5 >>& 10s.log
+cohrs_run 14.0 >>& 10s.log
+cohrs_run 14.5 >>& 10s.log
+cohrs_run 15.0 >>& 10s.log
+cohrs_run 15.5 >>& 10s.log
+cohrs_run 16.0 >>& 10s.log
+cohrs_run 16.5 >>& 10s.log
+cohrs_run 16.85 >>& 10s.log
+cohrs_run 17.0 0.38 >>& 10s.log
+cohrs_run 17.0 >>& 10s.log
+cohrs_run 17.5 >>& 10s.log
+cohrs_run 17.5 -0.37 >>& 10s.log
+cohrs_run 18.0 >>& 10s.log
+cohrs_run 18.5 >>& 10s.log
+cohrs_run 18.5 -0.37 >>& 10s.log
+cohrs_run 19.0 >>& 10s.log
+cohrs_run 19.5 >>& 10s.log

@@ -1,0 +1,32 @@
+#!/bin/csh
+alias cohrs_run ~mjc/cohrs/cohrs_run
+rm -f 50s.log
+cohrs_run 50.5 >>& 50s.log
+cohrs_run 51.25  -0.25 >>& 50s.log
+cohrs_run 51.5 >>& 50s.log
+cohrs_run 51.5   0.25 >>& 50s.log
+cohrs_run 51.5  -0.25 >>& 50s.log
+cohrs_run 51.75 -0.25 >>& 50s.log
+cohrs_run 52.25  0.25 >>& 50s.log
+cohrs_run 53.0 >>& 50s.log
+cohrs_run 53.5   0.24 >>& 50s.log
+cohrs_run 53.5  -0.24 >>& 50s.log
+cohrs_run 54.0   0.24 >>& 50s.log
+cohrs_run 54.0  -0.24 >>& 50s.log
+cohrs_run 54.5   0.24 >>& 50s.log
+cohrs_run 54.5  -0.24 >>& 50s.log
+cohrs_run 55.0   0.24 >>& 50s.log
+cohrs_run 55.0  -0.24 >>& 50s.log
+cohrs_run 55.16  0.86 >>& 50s.log
+cohrs_run 55.5  -0.24 >>& 50s.log
+cohrs_run 56.0   0.24 >>& 50s.log
+cohrs_run 56.0  -0.24 >>& 50s.log
+cohrs_run 56.5   0.24 >>& 50s.log
+cohrs_run 56.5  -0.24 >>& 50s.log
+cohrs_run 57.0   0.24 >>& 50s.log
+cohrs_run 57.0  -0.24 >>& 50s.log
+cohrs_run 57.5   0.24 >>& 50s.log
+cohrs_run 57.5  -0.24 >>& 50s.log
+cohrs_run 58.0  -0.24 >>& 50s.log
+cohrs_run 60.0   0.24 >>& 50s.log
+cohrs_run 60.0  -0.24 >>& 50s.log
