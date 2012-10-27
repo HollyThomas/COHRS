@@ -1,0 +1,305 @@
+#!/bin/csh
+#+
+#  Name:
+#     cohrs_run
+
+#  Purpose:
+#     Process COHRS data for a tile.
+
+#  Language:
+#     Unix C-shell
+
+#  Invocation:
+#     cohrs_run longitude [latitude]
+
+#  Description:
+#     This sets up a COHRS reduction, processes the data for the given
+#     galactic longitude, renames the final products and removes
+#     unwanted files.
+
+#  Arguments:
+#     The galactic longitude and latitude.  The latter defaults to 0.0.
+
+#  Examples:
+#     cohrs_run 17.5 -0.37
+#        Produces reduced products for galactic longitude 17.5 degrees.
+#        latitude -0.37 degrees.
+
+#  Notes:
+#     -  It uses /star for stability, but needs post-Kapuahi ORAC-DR
+#     changes by MJC to handle the product trimming and creation of LV
+#     image.
+
+#  Output:
+#     All the final NDF products have the prefix COHRS_<L>_<B>_
+#     where L and B are the galactic longitude and latitude respectively.
+#     L is formatted 6.2f and B <sign>5.2f , where <sign> is + or -, and 
+#     "p" is substituted for the decimal point.  For instance the name
+#     prefix for the example above would be "COHRS_017p50_-0p37_"
+#     -  The reduced spectral cube has suffix CUBE.
+#     -  An integ collapsed image with INTEG suffix.
+#     -  A longitude-velocity image with an LV suffix.
+#     -  A 1 km/s velocity rebinned cube with suffix CUBE_REBIN.
+#
+#     The following non-NDFs are created too.  These have the same
+#     prefix as the NDFs.
+#     -  The quality-asurance log with suffix log.qa.
+#     -  The index of bad receptors found during QA checks with suffix
+#        bad_receptors_qa
+#     -  The 256-pixel image of the rimg with suffix rimg_256.png
+
+#  Prior Requirements:
+
+#  Copyright:
+#     Copyright (C) 2012 Science and Technology Facilitties Council.
+#     All Rights Reserved.
+
+#  Licence:
+#     This program is free software; you can redistribute it and/or
+#     modify it under the terms of the GNU General Public License as
+#     published by the Free Software Foundation; either Version 2 of
+#     the License, or (at your option) any later version.
+#
+#     This program is distributed in the hope that it will be
+#     useful, but WITHOUT ANY WARRANTY; without even the implied
+#     warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+#     PURPOSE. See the GNU General Public License for more details.
+#
+#     You should have received a copy of the GNU General Public License
+#     along with this program; if not, write to the Free Software
+#     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+#     02110-1301, USA.
+
+#  Authors:
+#     MJC: Malcolm J. Currie (JAC)
+#     {enter_new_authors_here}
+
+#  History:
+#     2012 September 26 (MJC):
+#        Original version.
+#     {enter_further_changes_here}
+
+#-
+
+# Conceal the startup messages.  KAPPA is needed for the CALC command.
+    alias echo "echo > /dev/null"
+    source $KAPPA_DIR/kappa.csh
+    unalias echo
+
+#  Obtain argument value.
+#  ======================
+
+#  Initialize shell variables.
+set long = -1
+set lat = 0.0
+
+#  Check that a longitude was supplied.
+if ( $#argv == 0 ) then
+   echo "Usage: cohrs_run -l longitude"
+   exit
+endif
+
+#  Process each of the arguments to the script.
+if ( $#argv > 0 ) then
+   set long = $argv[1]
+   shift argv
+endif
+
+if ( $#argv > 0 ) then
+   set lat = $argv[1]
+endif
+
+# Validate the longitude. TBD.
+
+
+# Extract information from the file list.
+# =======================================
+
+# Convert the longitude and latitude to two decimal places.
+set long2 = `echo $long | awk '{printf("%06.2f", $1)}'`
+set lat2 = `echo $lat | awk '{printf("%5.2f", $1)}'`
+echo "Formatted co-ordinates are $long2, $lat2"
+
+# Make a form where the decimal is replaced by the letter p.
+set longp  = `echo $long2 | sed 's/\./p/'`
+set latp  = `echo $lat2 | sed 's/\./p/'`
+set ilat = `calc exp="'nint($lat2)'"`
+
+# Introduce the sign for positive values.
+if ( $ilat == "-0" ) then
+   set sign = ""
+else
+   set sign = "+"
+endif
+
+# Obtain the file name.
+setenv COHRS /home/mjc/cohrs
+set flist = "$COHRS/gal_${longp}_${sign}${latp}.list"
+
+# Check that the file exists, allowing for the default latitude
+# or the user entering 0 when the latitude is -0.  
+if ( ! -e $flist ) then
+   if ( $latp == "0p00" ) then
+      if ( "$sign" == "+" ) then
+         set signf = "-"
+      else
+         set signf = "+"
+      endif
+
+      set flists = "$COHRS/gal_${longp}_${signf}${latp}.list"
+      if ( ! -e $flists ) then
+         echo "Unable to file list of observations for l=$long b=$lat."
+         echo "Neither $flist"
+         echo "nor $flists exist."
+         exit
+      else
+         set flist = $flists
+      endif
+   else
+      echo "Unable to file list of observations for l=$long b=$lat."
+      echo "$flist does not exist"
+   endif
+endif
+
+echo "Using file $flist for the list of observations."
+
+# Extract the UT date and observation number from the first line in
+# the file list, which will be the name of the group, since the list
+# date then observation number order.
+set raw = `awk 'BEGIN { FS = "/" }{if (FNR==1) print $NF}' $flist` 
+set utdate = `echo $raw | awk '{print substr($1,2,8)}'`
+set obsnum = `echo $raw | awk '{printf("%d", substr($1,11,5))}'`
+set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
+
+# Remove old files.
+# =================
+
+# Do not want the old QA log as want to save just the results for the 
+# upcoming processing.  Likewise determine bad receptors afresh, not
+# from an old index.
+\rm -f log.qa index.bad_receptors_qa
+
+# Run the pipeline.
+# =================
+
+# Would like to use Kapuahi for stability, however, MAKECUBE and AST had
+# bugs, so use /stardev instead.
+source /jac_sw/bin/stardev.csh
+
+# Setup ORAC-DR.  The date is arbitrary as we obtain the files from a
+# GRP text file, but since we know the date, let's use it.
+oracdr_acsis $utdate
+echo " "
+echo "Setup ORAC-DR for UT ${utdate}."
+
+# Use MJC's latest ORAC-DR primitives that post-date Kapuahi (/star).
+setenv ORAC_DIR /net/ulaula/export/data/mjc/soft/mjc/oracdr/src
+setenv ORAC_DATA_CAL /net/ulaula/export/data/mjc/soft/mjc/oracdr/cal/acsis
+
+echo "Running ORAC-DR with the following command:"
+echo "oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS.ini -onegroup"
+oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS.ini -onegroup
+
+# Rename key products.
+# ====================
+
+# Set the root names.
+set group_prefix = "ga"${utdate}"_"${obsnum}"_1_"
+set final_prefix =  "COHRS_${longp}_${latp}_"
+
+# Form group and cube names for the first rename.
+set cube = ${group_prefix}"reduced001.sdf"
+set final_cube = ${final_prefix}"CUBE.sdf"
+mv $cube $final_cube
+echo " "
+echo "Created reduced cube ${final_cube}."
+
+# Do likewise for the rebinned cube, ...
+set rebin = ${group_prefix}"1p00bin001.sdf"
+set final_rebin = ${final_prefix}"CUBE_REBIN.sdf"
+mv $rebin $final_rebin
+echo "Created rebinned cube ${final_rebin}."
+
+# the longitude-velocity image, ...
+set lv = ${group_prefix}"lv001.sdf"
+set final_lv = ${final_prefix}"LV.sdf"
+mv $lv $final_lv
+echo "Created LV image ${final_lv}."
+
+# the integrated map, ...
+set integ = ${group_prefix}"integ.sdf"
+set final_integ = ${final_prefix}"INTEG.sdf"
+mv $integ $final_integ
+echo "Created integrated image ${final_integ}."
+
+# the rimg thumbnail, ...
+set thumbnail = ${group_prefix}"rimg_256.png"
+set final_thumbnail = ${final_prefix}"rimg_256.png"
+mv $thumbnail $final_thumbnail
+echo "Created thumbnail ${final_thumbnail}."
+
+# the index of bad receptors from QA, and ...
+mv index.bad_receptors_qa ${final_prefix}bad_receptors_qa
+echo "Created QA bad receptors index ${final_prefix}bad_receptors_qa."
+
+# the quality-assurance log.
+mv log.qa ${final_prefix}log.qa
+echo "Created quality-assurance log ${final_prefix}log.qa."
+
+# Remove unwanted files.
+# ======================
+#
+# Remove other files from the data processing that are normally
+# required for CADC, but are not needed by COHRS.  The individual
+# observation reduced cubes may be needed if the group cube exhibits
+# adverse qualities; investigation may find these attributable to
+# a single observation.
+
+# Need to remove each observation's files.  Hence form lists of the
+# unique observations.
+set nlines = `wc $flist`
+set count = 1
+set old_prefix = " "
+while ( $count <= $nlines[1] )
+
+# Extract the UT date and observation number from the first line in
+# the file list, which will be the name of the group, since the list
+# date then observation number order.
+   set obs_prefix = `sed -n "${count}p" "$flist" | awk 'BEGIN{ FS = "/" }{print substr($NF,1,19)}'`
+   if ( "$obs_prefix" != "$old_prefix" ) then
+
+      \rm -f ${obs_prefix}cube*.sdf
+      \rm -f ${obs_prefix}integ.sdf
+      \rm -f ${obs_prefix}iwc.sdf
+      \rm -f ${obs_prefix}noise.sdf
+#rm -f ${obs_prefix}reduced*.sdf
+      \rm -f ${obs_prefix}rimg.sdf
+      \rm -f ${obs_prefix}rimg_1024.png
+      \rm -f ${obs_prefix}rimg_64.png
+      \rm -f ${obs_prefix}rms??.sdf
+      \rm -f ${obs_prefix}rvr*.sdf
+      \rm -f ${obs_prefix}rsp.sdf
+      \rm -f ${obs_prefix}rsp*.png
+      \rm -f ${obs_prefix}sp001.sdf
+      \rm -f ${obs_prefix}sp001.png
+      echo "Remove unwanted observation files beginning with ${obs_prefix}."
+   endif
+
+   set old_prefix = $obs_prefix
+   @ count++
+end
+
+# Remove the unwanted group files.
+\rm -f ${group_prefix}cube*.sdf
+\rm -f ${group_prefix}iwc.sdf
+\rm -f ${group_prefix}noise.sdf
+\rm -f ${group_prefix}rimg.sdf
+\rm -f ${group_prefix}rimg_1024.png
+\rm -f ${group_prefix}rimg_64.png
+\rm -f ${group_prefix}rms??.sdf
+\rm -f ${group_prefix}rsp*.png
+\rm -f ${group_prefix}rsp.sdf
+\rm -f ${group_prefix}sp001.sdf
+echo "Remove unwanted group files beginning with ${group_prefix}."
+echo " "
+echo " "
