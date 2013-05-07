@@ -59,7 +59,7 @@
 #       because it is not known unambigously.
 
 #  Copyright:
-#     Copyright (C) 2012 Science and Technology Facilitties Council.
+#     Copyright (C) 2012-2013 Science and Technology Facilities Council.
 #     All Rights Reserved.
 
 #  Licence:
@@ -212,8 +212,8 @@ setenv ORAC_DIR /net/ulaula/export/data/mjc/soft/mjc/oracdr/src
 setenv ORAC_DATA_CAL /net/ulaula/export/data/mjc/soft/mjc/oracdr/cal/acsis
 
 echo "Running ORAC-DR with the following command:"
-echo "oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS.ini -onegroup"
-oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS.ini -onegroup
+echo "oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R1a.ini -calib bad_receptors=index -onegroup"
+oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R1a.ini -calib bad_receptors=index -onegroup
 
 # Rename key products.
 # ====================
