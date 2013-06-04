@@ -1,0 +1,81 @@
+*********************************************************
+* COHRS: CO High Resolution Survey Release 1 data notes *
+*********************************************************
+
+The survey release parameters are as follows:
+  Region: Northern Galactic Plane
+  Longitude range: 10.25 degrees - 55.00 degrees
+  Latitude range: (minimum) +/- 0.25 degrees (maximum) +/- 0.5 degrees
+  Molecule: 12CO J=3-2 (345.795 GHz)
+
+JCMT parameters:
+  FWHM @ 12CO(3-2) = 14 arcsec
+
+Instrument parameters: 
+  HARP (325 - 375 GHz) - a 16-pixel SSB SIS receiver
+  Footprint: 2 arcmin
+  Main beam conversion factor: 0.63
+
+Observing Setup:
+  Bandwidth: 1000MHz
+  Channel width: 488Hz
+  Obs mode: Basket-weave raster mapping
+  1/2 array spacing
+  Position Switching
+
+JCMT Project codes for retrieval of raw data from CADC: M10AU20, M11AU12, M13AU42
+
+**********************************************************************************
+
+DATA PRODUCTS:
+
+The data files are in FITS format.
+
+Three folders of products are provided: CUBE_REBIN, INTEG and LV. The
+data are tiled the same for each product, with tiles half a degree
+width in longitude (or +/- 0.25 deg from the central longitude
+position indicated by the filename).
+
+File names take the form COHRS_XXpXX_YpYY_<product>_R1.fit where XXpXX
+denotes the central longitude position, YpYY denotes the central
+latitude position, and <product> is CUBE_REBIN, INTEG or LV.
+
+CUBE_REBIN:
+
+The rebinned (to 1 km/s) 3D products (longitude, latitude, velocity)
+are provided for the specified regions as (0.5 degree, 1 degree,
+-30:155) cubes (some latitude ranges are not complete out to +/- 0.5
+degrees in this first release).
+
+Spatial resolution: 6 arcsec
+Velocity Resolution: 1 km/s
+Velocity range: -30:155 km/s
+
+File designation: COHRS_XXpXX_YpYY_CUBE_REBIN_R1.fit
+
+
+INTEG: 
+
+The cubes have been collapsed in the velocity axis (between -30 and
++155 km/s) to provide 2D integrated maps using the same dimensions as
+those in CUBE_REBIN.
+
+File designation: COHRS_XXpXX_YpYY_INTEG_R1.fit
+
+
+LV:
+
+The cubes have been collapsed (summed) in the latitude axis to provide
+a Longitude-Velocity map of the same cubes given in CUBE_REBIN.
+
+File designation: COHRS_XXpXX_YpYY_LV_R1.fit
+
+
+The directories INTEG/ and LV/ also have a combined map of the entire
+RELEASE1 survey area in their respective formats as an overview and
+reference.
+
+
+
+(Contact details: J.Dempsey, H. Thomas, & M. J. Currie, 2013:
+j.dempsey@jach.hawaii.edu)
