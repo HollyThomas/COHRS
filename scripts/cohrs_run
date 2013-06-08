@@ -29,9 +29,8 @@
 #        latitude -0.37 degrees.
 
 #  Notes:
-#     -  It uses /star for stability, but needs post-Kapuahi ORAC-DR
-#     changes by MJC to handle the product trimming and creation of LV
-#     image.
+#     -  It uses /stardev to get the latest fixes at the potential
+#     cost of stability.
 
 #  Output:
 #     All the final NDF products have the prefix COHRS_<L>_<B>_
@@ -92,6 +91,9 @@
 #        Removal of some wildcards and test for the existence of the
 #        bad-receptors index before attempting to move it.  Prevent
 #        incorrect -- in the flist for negative non-zero latitudes.
+#     2013 June 7 (MJC):
+#        Switched from /star to /stardev.  Retain noise and rms files,
+#        and the 1024-pixel rimg graphics files.
 #     {enter_further_changes_here}
 
 #-
@@ -197,7 +199,7 @@ set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
 # Run the pipeline.
 # =================
 
-# Would like to use Kapuahi for stability, however, MAKECUBE and AST had
+# Would like to use Hikianalia for stability, however, MAKECUBE and AST had
 # bugs, so use /stardev instead.
 source /jac_sw/bin/stardev.csh
 
@@ -206,10 +208,6 @@ source /jac_sw/bin/stardev.csh
 oracdr_acsis $utdate
 echo " "
 echo "Setup ORAC-DR for UT ${utdate}."
-
-# Use MJC's latest ORAC-DR primitives that post-date Kapuahi (/star).
-setenv ORAC_DIR /net/ulaula/export/data/mjc/soft/mjc/oracdr/src
-setenv ORAC_DATA_CAL /net/ulaula/export/data/mjc/soft/mjc/oracdr/cal/acsis
 
 echo "Running ORAC-DR with the following command:"
 echo "oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R1a.ini -calib bad_receptors=index -onegroup"
@@ -288,12 +286,12 @@ while ( $count <= $nlines[1] )
       \rm -f ${obs_prefix}cube*.sdf
       \rm -f ${obs_prefix}integ.sdf
       \rm -f ${obs_prefix}iwc.sdf
-      \rm -f ${obs_prefix}noise.sdf
-#rm -f ${obs_prefix}reduced*.sdf
+#      \rm -f ${obs_prefix}noise.sdf
+#      rm -f ${obs_prefix}reduced*.sdf
       \rm -f ${obs_prefix}rimg.sdf
-      \rm -f ${obs_prefix}rimg_1024.png
+#     \rm -f ${obs_prefix}rimg_1024.png
       \rm -f ${obs_prefix}rimg_64.png
-      \rm -f ${obs_prefix}rms??.sdf
+#      \rm -f ${obs_prefix}rms??.sdf
       \rm -f ${obs_prefix}rvr001.sdf
       \rm -f ${obs_prefix}rsp.sdf
       \rm -f ${obs_prefix}rsp*.png
@@ -309,9 +307,9 @@ end
 # Remove the unwanted group files.
 \rm -f ${group_prefix}cube*.sdf
 \rm -f ${group_prefix}iwc.sdf
-\rm -f ${group_prefix}noise.sdf
-\rm -f ${group_prefix}rimg.sdf
-\rm -f ${group_prefix}rimg_1024.png
+#\rm -f ${group_prefix}noise.sdf
+#\rm -f ${group_prefix}rimg.sdf
+#\rm -f ${group_prefix}rimg_1024.png
 \rm -f ${group_prefix}rimg_64.png
 \rm -f ${group_prefix}rms??.sdf
 \rm -f ${group_prefix}rsp*.png
