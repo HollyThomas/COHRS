@@ -50,7 +50,7 @@ for i in range( len( data ) ):
     coord = longlat( data[i][0] )
     long = float ( coord[0] )
     lat = float ( coord[1] )
-    if ( long < 16.75 and long <> prevlong ) or ( long >= 16.75 and ( long <> prevlong or lat <> prevlat ) ):
+    if ( long <> prevlong or lat <> prevlat ):
 
 # Switch to the next tile.
         f.close()
@@ -66,10 +66,10 @@ for i in range( len( data ) ):
         if ( math.fabs( lat ) > 1.0 ):
             continue
 
-# Want all inner regions to be 0.0 latitude.  There are some with
+# Want most inner regions to be 0.0 latitude.  There are some with
 # negative subtiles that are listed first and hence would name the
 # tile incorrectly.
-        if long < 16.75 and lat < 0.0:
+        if lat < 0.0 and lat > -0.01:
             coord[1] = "-0.00"
         filename = tilename( coord[0], coord[1] )
         f = open( filename, 'w' )
