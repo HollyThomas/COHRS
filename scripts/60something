@@ -1,0 +1,13 @@
+#!/bin/csh
+alias cohrs_run ~mjc/cohrs/cohrs_run
+rm -f 60s_R2.log
+cohrs_run 60.00  0.24  >& 60s_R2.log
+cohrs_run 60.00 -0.24 >>& 60s_R2.log
+cohrs_run 60.50  0.24 >>& 60s_R2.log
+cohrs_run 60.50 -0.24 >>& 60s_R2.log
+cohrs_run 61.00  0.24 >>& 60s_R2.log
+cohrs_run 61.00 -0.24 >>& 60s_R2.log
+cohrs_run 61.50  0.24 >>& 60s_R2.log
+cohrs_run 61.50 -0.24 >>& 60s_R2.log
+cohrs_run 62.00  0.24 >>& 60s_R2.log
+cohrs_run 62.00 -0.24 >>& 60s_R2.log

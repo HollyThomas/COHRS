@@ -1,20 +1,35 @@
 #!/bin/csh
 alias cohrs_run ~mjc/cohrs/cohrs_run
-rm -f 40s.log
-cohrs_run 40.0 >& 40s.log
-cohrs_run 40.5 >>& 40s.log
-cohrs_run 41.0 >>& 40s.log
-cohrs_run 41.5 >>& 40s.log
-cohrs_run 42.0 >>& 40s.log
-cohrs_run 42.5 >>& 40s.log
-cohrs_run 43.0 >>& 40s.log
-cohrs_run 43.15 >>& 40s.log
-cohrs_run 43.5 >>& 40s.log
-cohrs_run 44.13 >>& 40s.log
-cohrs_run 44.88 >>& 40s.log
-cohrs_run 45.5 >>& 40s.log
-cohrs_run 45.85 >>& 40s.log
-cohrs_run 46.5 >>& 40s.log
-cohrs_run 47.5 >>& 40s.log
-cohrs_run 48.5 >>& 40s.log
-cohrs_run 49.5 >>& 40s.log
+rm -f 40s_R2.log
+cohrs_run 40.00 -0.00  >& 40s_R2.log
+cohrs_run 40.50  0.00 >>& 40s_R2.log
+cohrs_run 40.50  0.37 >>& 40s_R2.log
+cohrs_run 40.50 -0.37 >>& 40s_R2.log
+cohrs_run 41.00 -0.00 >>& 40s_R2.log
+cohrs_run 41.50  0.00 >>& 40s_R2.log
+cohrs_run 41.50  0.38 >>& 40s_R2.log
+cohrs_run 41.50 -0.38 >>& 40s_R2.log
+cohrs_run 42.00 -0.00 >>& 40s_R2.log
+cohrs_run 42.38  0.37 >>& 40s_R2.log
+cohrs_run 42.38 -0.38 >>& 40s_R2.log
+cohrs_run 42.50  0.00 >>& 40s_R2.log
+cohrs_run 43.00  0.00 >>& 40s_R2.log
+cohrs_run 43.00  0.37 >>& 40s_R2.log
+cohrs_run 43.00 -0.37 >>& 40s_R2.log
+cohrs_run 43.15 -0.00 >>& 40s_R2.log
+cohrs_run 43.50 -0.00 >>& 40s_R2.log
+cohrs_run 44.13 -0.00 >>& 40s_R2.log
+cohrs_run 44.88 -0.00 >>& 40s_R2.log
+cohrs_run 45.50 -0.00 >>& 40s_R2.log
+cohrs_run 45.85  0.00 >>& 40s_R2.log
+cohrs_run 45.87  0.38 >>& 40s_R2.log
+cohrs_run 45.87 -0.37 >>& 40s_R2.log
+cohrs_run 46.50  0.00 >>& 40s_R2.log
+cohrs_run 46.50  0.37 >>& 40s_R2.log
+cohrs_run 47.50 -0.00 >>& 40s_R2.log
+cohrs_run 48.50  0.37 >>& 40s_R2.log
+cohrs_run 48.50 -0.00 >>& 40s_R2.log
+cohrs_run 48.50 -0.37 >>& 40s_R2.log
+cohrs_run 49.50  0.37 >>& 40s_R2.log
+cohrs_run 49.50 -0.00 >>& 40s_R2.log
+cohrs_run 49.50 -0.38 >>& 40s_R2.log

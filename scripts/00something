@@ -1,0 +1,5 @@
+#!/bin/csh
+alias cohrs_run ~mjc/cohrs/cohrs_run
+rm -f 00s_R2.log
+cohrs_run 09.75  0.25  >& 00s_R2.log
+cohrs_run 09.75 -0.25 >>& 00s_R2.log

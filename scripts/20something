@@ -1,23 +1,42 @@
 #!/bin/csh
 alias cohrs_run ~mjc/cohrs/cohrs_run
-rm -f 20s.log
-cohrs_run 20.0  >& 20s.log
-cohrs_run 20.5 >>& 20s.log
-cohrs_run 21.0 >>& 20s.log
-cohrs_run 21.5 >>& 20s.log
-cohrs_run 22.0 >>& 20s.log
-cohrs_run 22.5 >>& 20s.log
-cohrs_run 23.0 >>& 20s.log
-cohrs_run 23.5 >>& 20s.log
-cohrs_run 24.0 >>& 20s.log
-cohrs_run 24.5 >>& 20s.log
-cohrs_run 25.0 >>& 20s.log
-cohrs_run 25.5 >>& 20s.log
-cohrs_run 26.0 >>& 20s.log
-cohrs_run 26.5 >>& 20s.log
-cohrs_run 27.0 >>& 20s.log
-cohrs_run 27.5 >>& 20s.log
-cohrs_run 28.0 >>& 20s.log
-cohrs_run 28.5 >>& 20s.log
-cohrs_run 29.0 >>& 20s.log
-cohrs_run 29.5 >>& 20s.log
+rm -f 20s_R2.log
+cohrs_run 20.00 -0.00  >& 20s_R2.log
+cohrs_run 20.50  0.00 >>& 20s_R2.log
+cohrs_run 20.50  0.37 >>& 20s_R2.log
+cohrs_run 20.50 -0.38 >>& 20s_R2.log
+cohrs_run 21.00 -0.00 >>& 20s_R2.log
+cohrs_run 21.50  0.00 >>& 20s_R2.log
+cohrs_run 21.50  0.38 >>& 20s_R2.log
+cohrs_run 21.50 -0.38 >>& 20s_R2.log
+cohrs_run 22.00  0.00 >>& 20s_R2.log
+cohrs_run 22.50  0.38 >>& 20s_R2.log
+cohrs_run 22.50 -0.00 >>& 20s_R2.log
+cohrs_run 22.50 -0.38 >>& 20s_R2.log
+cohrs_run 23.00 -0.00 >>& 20s_R2.log
+cohrs_run 23.50  0.00 >>& 20s_R2.log
+cohrs_run 23.50 -0.37 >>& 20s_R2.log
+cohrs_run 24.00 -0.00 >>& 20s_R2.log
+cohrs_run 24.50  0.00 >>& 20s_R2.log
+cohrs_run 24.50  0.38 >>& 20s_R2.log
+cohrs_run 24.50 -0.37 >>& 20s_R2.log
+cohrs_run 25.00  0.00 >>& 20s_R2.log
+cohrs_run 25.50  0.00 >>& 20s_R2.log
+cohrs_run 25.50  0.37 >>& 20s_R2.log
+cohrs_run 25.50 -0.37 >>& 20s_R2.log
+cohrs_run 26.00  0.00 >>& 20s_R2.log
+cohrs_run 26.50  0.00 >>& 20s_R2.log
+cohrs_run 26.50  0.37 >>& 20s_R2.log
+cohrs_run 26.50 -0.38 >>& 20s_R2.log
+cohrs_run 27.00 -0.00 >>& 20s_R2.log
+cohrs_run 27.50  0.00 >>& 20s_R2.log
+cohrs_run 27.50  0.38 >>& 20s_R2.log
+cohrs_run 27.50 -0.37 >>& 20s_R2.log
+cohrs_run 28.00 -0.00 >>& 20s_R2.log
+cohrs_run 28.50  0.37 >>& 20s_R2.log
+cohrs_run 28.50 -0.00 >>& 20s_R2.log
+cohrs_run 28.50 -0.37 >>& 20s_R2.log
+cohrs_run 29.00  0.00 >>& 20s_R2.log
+cohrs_run 29.50  0.00 >>& 20s_R2.log
+cohrs_run 29.50  0.37 >>& 20s_R2.log
+cohrs_run 29.50 -0.37 >>& 20s_R2.log

@@ -1,25 +1,45 @@
 #!/bin/csh
 alias cohrs_run ~mjc/cohrs/cohrs_run
-rm -f 30s.log
-cohrs_run 30.0  >& 30s.log
-cohrs_run 30.5 >>& 30s.log
-cohrs_run 31.0 >>& 30s.log
-cohrs_run 31.5 >>& 30s.log
-cohrs_run 31.88 >>& 30s.log
-cohrs_run 32.0 >>& 30s.log
-cohrs_run 32.5 >>& 30s.log
-cohrs_run 33.0 >>& 30s.log
-cohrs_run 33.12 >>& 30s.log
-cohrs_run 33.5 >>& 30s.log
-cohrs_run 34.0 >>& 30s.log
-cohrs_run 34.5 >>& 30s.log
-cohrs_run 35.0 >>& 30s.log
-cohrs_run 35.5 >>& 30s.log
-cohrs_run 36.0 >>& 30s.log
-cohrs_run 36.5 >>& 30s.log
-cohrs_run 37.0 >>& 30s.log
-cohrs_run 37.5 >>& 30s.log
-cohrs_run 38.0 >>& 30s.log
-cohrs_run 38.5 >>& 30s.log
-cohrs_run 39.0 >>& 30s.log
-cohrs_run 39.5 >>& 30s.log
+rm -f 30s_R2.log
+cohrs_run 30.00 -0.00  >& 30s_R2.log
+cohrs_run 30.50  0.00 >>& 30s_R2.log
+cohrs_run 30.50  0.37 >>& 30s_R2.log
+cohrs_run 30.50 -0.38 >>& 30s_R2.log
+cohrs_run 31.00 -0.00 >>& 30s_R2.log
+cohrs_run 31.50  0.00 >>& 30s_R2.log
+cohrs_run 31.50  0.38 >>& 30s_R2.log
+cohrs_run 31.50 -0.38 >>& 30s_R2.log
+cohrs_run 31.88  0.00 >>& 30s_R2.log
+cohrs_run 32.00 -0.00 >>& 30s_R2.log
+cohrs_run 32.50  0.00 >>& 30s_R2.log
+cohrs_run 32.50  0.38 >>& 30s_R2.log
+cohrs_run 32.50 -0.37 >>& 30s_R2.log
+cohrs_run 33.00  0.00 >>& 30s_R2.log
+cohrs_run 33.12  0.00 >>& 30s_R2.log
+cohrs_run 33.50  0.00 >>& 30s_R2.log
+cohrs_run 33.50  0.38 >>& 30s_R2.log
+cohrs_run 33.50 -0.37 >>& 30s_R2.log
+cohrs_run 34.00 -0.00 >>& 30s_R2.log
+cohrs_run 34.50  0.00 >>& 30s_R2.log
+cohrs_run 34.50  0.37 >>& 30s_R2.log
+cohrs_run 34.50 -0.37 >>& 30s_R2.log
+cohrs_run 35.00 -0.00 >>& 30s_R2.log
+cohrs_run 35.50  0.38 >>& 30s_R2.log
+cohrs_run 35.50 -0.00 >>& 30s_R2.log
+cohrs_run 35.50 -0.37 >>& 30s_R2.log
+cohrs_run 36.00 -0.00 >>& 30s_R2.log
+cohrs_run 36.50  0.38 >>& 30s_R2.log
+cohrs_run 36.50 -0.00 >>& 30s_R2.log
+cohrs_run 36.50 -0.37 >>& 30s_R2.log
+cohrs_run 37.00 -0.00 >>& 30s_R2.log
+cohrs_run 37.50  0.00 >>& 30s_R2.log
+cohrs_run 37.50  0.37 >>& 30s_R2.log
+cohrs_run 37.50 -0.38 >>& 30s_R2.log
+cohrs_run 38.00 -0.00 >>& 30s_R2.log
+cohrs_run 38.50  0.00 >>& 30s_R2.log
+cohrs_run 38.50  0.38 >>& 30s_R2.log
+cohrs_run 38.50 -0.37 >>& 30s_R2.log
+cohrs_run 39.00  0.00 >>& 30s_R2.log
+cohrs_run 39.50  0.38 >>& 30s_R2.log
+cohrs_run 39.50 -0.00 >>& 30s_R2.log
+cohrs_run 39.50 -0.37 >>& 30s_R2.log
