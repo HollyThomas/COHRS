@@ -29,8 +29,8 @@
 #        latitude -0.37 degrees.
 
 #  Notes:
-#     -  It uses /stardev to get the latest fixes at the potential
-#     cost of stability.
+#     -  It uses the ulaula stable build to get recent fixes yet
+#     offer stability if /stadrev is rebuilt.
 
 #  Output:
 #     All the final NDF products have the prefix COHRS_<L>_<B>_
@@ -58,7 +58,7 @@
 #       because it is not known unambigously.
 
 #  Copyright:
-#     Copyright (C) 2012-2013 Science and Technology Facilities Council.
+#     Copyright (C) 2012-2013, 2015 Science and Technology Facilities Council.
 #     All Rights Reserved.
 
 #  Licence:
@@ -94,6 +94,10 @@
 #     2013 June 7 (MJC):
 #        Switched from /star to /stardev.  Retain noise and rms files,
 #        and the 1024-pixel rimg graphics files.
+#     2015 January 8 (MJC):
+#        Switched to classic_stable.  Used R2 recpars which includes
+#        itersum flatfielding, and a final map with 170 km/s non-emission
+#        regions so that the noise can be derived (as with R1a).
 #     {enter_further_changes_here}
 
 #-
@@ -199,9 +203,9 @@ set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
 # Run the pipeline.
 # =================
 
-# Would like to use Hikianalia for stability, however, MAKECUBE and AST had
-# bugs, so use /stardev instead.
-source /jac_sw/bin/stardev.csh
+# Use a stable build for stability during long jobs.  If /stardev is
+# rebuilt it causes a READSOCK and a running job to fail.
+source /home/mjc/bin/stablestar
 
 # Setup ORAC-DR.  The date is arbitrary as we obtain the files from a
 # GRP text file, but since we know the date, let's use it.
@@ -210,8 +214,8 @@ echo " "
 echo "Setup ORAC-DR for UT ${utdate}."
 
 echo "Running ORAC-DR with the following command:"
-echo "oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R1a.ini -calib bad_receptors=index -onegroup"
-oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R1a.ini -calib bad_receptors=index -onegroup
+echo "oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R2.ini -calib bad_receptors=index -onegroup"
+oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R2.ini -calib bad_receptors=index -onegroup
 
 # Rename key products.
 # ====================
