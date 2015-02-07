@@ -40,6 +40,10 @@
 #     5.2f; {longitude} is formatted 6.2f.  Finally each string has "p"
 #     replacing the decimal point.  An example would be
 #     /home/mjc/cohrs/recpars-COHRS_057p50_+0p24.ini.
+#     -  Lists of the files to process in each region are stored in files
+#     of the form /home/mjc/cohrs/gal_{longitude}_{latitude}.list, where
+#     the tokens are the same as for the recipe files.  The equivalent
+#     example is /home/mjc/cohrs/gal_057p50_+0p24.list.
 
 #  Output:
 #     All the final NDF products have the prefix COHRS_<L>_<B>_
@@ -110,7 +114,7 @@
 #     2015 January 14 (MJC):
 #        Allow different fields to use a field-specific set of
 #        parameters, but default to the generic if the specific does not
-#        exist.
+#        exist.  Document the input file naming conventions.
 #     {enter_further_changes_here}
 
 #-
