@@ -31,6 +31,15 @@
 #  Notes:
 #     -  It uses the ulaula stable build to get recent fixes yet
 #     offer stability if /stadrev is rebuilt.
+#     -  The recipes parameters come from the file
+#     /home/mjc/cohrs/recpars_{longitude}_${latitude}.ini if a region-specific
+*     set is available, otherwise taken from the generic recpars-COHRS_R2.ini,
+#     where the supplied longitude and latitude arguments are used to derive
+#     strings for the position tokens.  The {latitude} string should include
+#     a leading + sign if north of the Galactic Plane and is formatted
+#     5.2f; {longitude} is formatted 6.2f.  Finally each string has "p"
+#     replacing the decimal point.  An example would be
+#     /home/mjc/cohrs/recpars-COHRS_057p50_+0p24.ini.
 
 #  Output:
 #     All the final NDF products have the prefix COHRS_<L>_<B>_
@@ -98,6 +107,10 @@
 #        Switched to classic_stable.  Used R2 recpars which includes
 #        itersum flatfielding, and a final map with 170 km/s non-emission
 #        regions so that the noise can be derived (as with R1a).
+#     2015 January 14 (MJC):
+#        Allow different fields to use a field-specific set of
+#        parameters, but default to the generic if the specific does not
+#        exist.
 #     {enter_further_changes_here}
 
 #-
@@ -192,6 +205,11 @@ set utdate = `echo $raw | awk '{print substr($1,2,8)}'`
 set obsnum = `echo $raw | awk '{printf("%d", substr($1,11,5))}'`
 set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
 
+# Find the recipe parameter file.  Some regions require special
+# velocity limits or not have flatfielding due to low signal.
+set recpar = "$COHRS/recpars-COHRS_${longp}_${signf}${latp}.ini"
+if ( ! -e $recpar ) set recpar = "$COHRS/recpars-COHRS_R2.ini"
+
 # Remove old files.
 # =================
 
@@ -214,8 +232,8 @@ echo " "
 echo "Setup ORAC-DR for UT ${utdate}."
 
 echo "Running ORAC-DR with the following command:"
-echo "oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R2.ini -calib bad_receptors=index -onegroup"
-oracdr -files $flist -nodisplay -log f -recpars $COHRS/recpars-COHRS_R2.ini -calib bad_receptors=index -onegroup
+echo "oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup"
+oracdr -files $flist -nodisplay -log f -recpars $COHRS/$recpar -calib bad_receptors=index -onegroup
 
 # Rename key products.
 # ====================
