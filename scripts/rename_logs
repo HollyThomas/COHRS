@@ -1,0 +1,15 @@
+#!/bin/csh
+
+foreach f ( `find . ! -mtime -1  -name .oracdr\*` )
+   set field = `grep "DR Ar" $f | awk '{gsub(".list","",$7); gsub("+","",$7); print substr($7,22)}'`
+   set log = "COHRS_0"$field"_oracdr.log"
+   if ( -e $log ) then
+      set version = 1
+      while ( -e $log"."$version )
+         @ version++
+      end
+      set log = "$log"."$version"
+   endif
+   echo "Move $f to $log"
+   mv $f $log
+end
