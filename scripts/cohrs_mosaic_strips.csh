@@ -24,14 +24,14 @@
 #     and COHRS_TILED must be defined and point to the appropriate
 #     locations.
 #     - $COHRS_FILELISTS should contain the lists of PPV cubes to tile
-#     in each mosaic and have names ending "trim.txt".
+#     in each mosaic and have names ending "mosaic.txt".
 #     - $COHRS_TILED should contain the PPV cubes to be mosaicked.
 
 #  Output:
 #     All output is created in $COHRS_TILED.
-#     - A mosaic for each $COHRS_FILELISTS/*trim.txt given the same
-#     name except the "trim.txt" is replaced by "cube.sdf".  For example,
-#     inner1trim.txt would generate a PPV mosaic called inner1cube.sdf.
+#     - A mosaic for each $COHRS_FILELISTS/*mosaic.txt given the same
+#     name except the file extension changes from "txt" to "sdf".  For example,
+#     inner1mosaic.txt would generate a PPV mosaic called inner1mosaic.sdf.
 #     - A PICARD .picard<XXXX> log for each mosaic.
 
 #  Authors:
@@ -41,6 +41,11 @@
 #  History:
 #     2016 April 25 (MJC):
 #        Original version.
+#     2016 April 27 (MJC):
+#        Form the velocity trimmed tiles.  This saves an extra NDFCOPY
+#        per NDF.  Use *mosaic.txt file lists instead of the *trim.txt,
+#        which list the untrimmed files.  Then make the trimmed file
+#        lists on the fly.
 #     {enter_further_changes_here}
 
 #-
@@ -51,14 +56,15 @@ kappa >>/dev/null
 \rm -f alignedlist.txt
 
 # The list of PPV NDFs to combine into which mosaics are given the the
-# filelists like inner3trim.txt, middle2trim.txt, and outer1trim.txt.
-foreach f ( `ls -1 $COHRS_FILELISTS/*trim.txt` )
+# filelists like inner3mosaic.txt, middle2mosaic.txt, and outer1mosaic.txt.
+foreach f ( `ls -1 $COHRS_FILELISTS/*mosaic.txt` )
    echo $f
 
-# To avoid confusion over origin times copy the NDFs to be processed.
-# Care to avoid appending suffix used by the PICARD recipe, such as _al.
-   set suffix = "_alsor"
-   ndfcopy in=^$f out=\*$suffix
+# To avoid confusion over the PPV NDFs' origin times, apply trimming and
+# alter the alignment Standard of Rest on copied NDFs.  Take care to
+# avoid appending suffix used by the PICARD recipe, such as _al.
+   set suffix = "_trim"
+   ndfcopy in=^$f"(,,-30.0:155.0)" out=\*$suffix
 
 # Create a new list of files to process.
    sed -e s/.sdf/${suffix}.sdf/ $f > alignedlist.txt
@@ -78,7 +84,7 @@ foreach f ( `ls -1 $COHRS_FILELISTS/*trim.txt` )
    set mosname = `ls -1t $COHRS_TILED/*_mos.sdf | head -n 1`
 
 # Form output PPV cube name, removing COHRS_FILELISTS's path.
-   set outname = `echo $f:t | sed -e s/trim.txt//`cube.sdf
+   set outname = `echo $f:t | sed -e s/.txt/.sdf/`
 
 # Rename the PPV mosaic to the name actually wanted.
    mv $mosname $outname
