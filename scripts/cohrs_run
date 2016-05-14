@@ -120,9 +120,9 @@
 #-
 
 # Conceal the startup messages.  KAPPA is needed for the CALC command.
-    alias echo "echo > /dev/null"
-    source $KAPPA_DIR/kappa.csh
-    unalias echo
+alias echo "echo > /dev/null"
+source $KAPPA_DIR/kappa.csh
+unalias echo
 
 #  Obtain argument value.
 #  ======================
