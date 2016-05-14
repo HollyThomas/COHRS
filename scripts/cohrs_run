@@ -201,6 +201,12 @@ endif
 
 echo "Using file $flist for the list of observations."
 
+# Find the recipe parameter file.  Some regions require special
+# velocity limits or not have flatfielding due to low signal.
+set recpar = "$COHRS/recpars-COHRS_${longp}_${sign}${latp}.ini"
+if ( ! -e $recpar ) set recpar = "$COHRS/recpars-COHRS_R2.ini"
+echo "Obtain recipe parameters from $recpar."
+
 # Extract the UT date and observation number from the first line in
 # the file list, which will be the name of the group, since the list
 # date then observation number order.
@@ -208,11 +214,6 @@ set raw = `awk 'BEGIN { FS = "/" }{if (FNR==1) print $NF}' $flist`
 set utdate = `echo $raw | awk '{print substr($1,2,8)}'`
 set obsnum = `echo $raw | awk '{printf("%d", substr($1,11,5))}'`
 set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
-
-# Find the recipe parameter file.  Some regions require special
-# velocity limits or not have flatfielding due to low signal.
-set recpar = "$COHRS/recpars-COHRS_${longp}_${signf}${latp}.ini"
-if ( ! -e $recpar ) set recpar = "$COHRS/recpars-COHRS_R2.ini"
 
 # Remove old files.
 # =================
