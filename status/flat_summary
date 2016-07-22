@@ -1331,7 +1331,9 @@ Flat field error values for each receptor:
 ---------------------------------------
 
 Processing observation: a20130623_00024_01_bl001.
-Processing observation: a20130623_00025_01_bl0 Flat field normalisation values for each receptor:
+Processing observation: a20130623_00025_01_bl001
+
+Flat field normalisation values for each receptor:
       H01      H02      H03      H04      H05      H06      H07      H08      H09
     0.926    0.947    1.050    0.847    1.000    0.958    0.942    0.825    0.930
       H11      H13      H15
@@ -1901,13 +1903,16 @@ Flat field error values for each receptor:
  
  
 /data/surveys/cohrs/work/V4/COHRS_023p50_0p00_oracdr.log
+---------------------------------------
  
  
 /data/surveys/cohrs/work/V4/COHRS_023p50_-0p37_oracdr.log
 ---------------------------------------
 
 Processing observation: a20140711_00033_01_bl001.
-Processing observation: a20140711_00034_01_bl0 Flat field normalisation values for each receptor:
+Processing observation: a20140711_00034_01_bl001.
+
+Flat field normalisation values for each receptor:
       H00      H01      H02      H03      H04      H05      H06      H07      H08
     0.979    1.075    1.003    1.048    0.950    1.000    0.963    0.879    0.824
       H09      H10      H11      H12      H15
