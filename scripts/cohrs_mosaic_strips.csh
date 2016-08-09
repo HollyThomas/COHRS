@@ -55,7 +55,7 @@ kappa >>/dev/null
 
 \rm -f alignedlist.txt
 
-# The list of PPV NDFs to combine into which mosaics are given the the
+# The list of PPV NDFs to combine into which mosaics are given in the
 # filelists like inner3mosaic.txt, middle2mosaic.txt, and outer1mosaic.txt.
 foreach f ( `ls -1 $COHRS_FILELISTS/*mosaic.txt` )
    echo $f
@@ -72,8 +72,8 @@ foreach f ( `ls -1 $COHRS_FILELISTS/*mosaic.txt` )
 # Although all the COHRS PPV cubes are in LSRK standard of rest, WCSMOSAIC
 # by default uses Heliocentric Standard of Rest for alignment.  [This
 # offset in line velocity was reported by Yangsu 2014 November 11 and
-# the cause identified by MJC.]  This SoR ives rise to progressively
-# shifted line velocities the further from the spaitial centre of the
+# the cause identified by MJC.]  This SoR gives rise to progressively
+# shifted line velocities the further from the spatial centre of the
 # first contributing cube a spectrum is located.
    wcsattrib ndf=^alignedlist.txt mode=set name=AlignStdOfRest newval=LSRK
 
