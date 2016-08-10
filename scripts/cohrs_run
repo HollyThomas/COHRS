@@ -321,16 +321,17 @@ while ( $count <= $nlines[1] )
       \rm -f ${obs_prefix}integ.sdf
       \rm -f ${obs_prefix}iwc.sdf
 #      \rm -f ${obs_prefix}noise.sdf
-#      rm -f ${obs_prefix}reduced*.sdf
+      rm -f ${obs_prefix}reduced*.sdf
       \rm -f ${obs_prefix}rimg.sdf
 #     \rm -f ${obs_prefix}rimg_1024.png
       \rm -f ${obs_prefix}rimg_64.png
-#      \rm -f ${obs_prefix}rms??.sdf
+      \rm -f ${obs_prefix}rms??.sdf
       \rm -f ${obs_prefix}rvr001.sdf
       \rm -f ${obs_prefix}rsp.sdf
       \rm -f ${obs_prefix}rsp*.png
       \rm -f ${obs_prefix}sp001.sdf
       \rm -f ${obs_prefix}sp001.png
+      \rm -f ${obs_prefix}raw0*.sdf
       echo "Remove unwanted observation files beginning with ${obs_prefix}."
    endif
 
