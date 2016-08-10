@@ -239,7 +239,7 @@ echo "Setup ORAC-DR for UT ${utdate}."
 
 echo "Running ORAC-DR with the following command:"
 echo "oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup"
-oracdr -files $flist -nodisplay -log f -recpars $COHRS/$recpar -calib bad_receptors=index -onegroup
+oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup
 
 # Rename key products.
 # ====================
