@@ -279,6 +279,12 @@ set final_thumbnail = ${final_prefix}"rimg_256.png"
 mv $thumbnail $final_thumbnail
 echo "Created thumbnail ${final_thumbnail}."
 
+# the ORAC-DR log file, ...
+set logfile = `ls -1t .oracdr* | head -n 1`
+set final_logfile = ${final_prefix}"oracdr.log"
+mv $logfile $final_logfile
+echo "Created ORAC-DR ${final_logfile}."
+
 # the index of bad receptors from QA, and ...
 if ( -e index.bad_receptors_qa ) then
    mv index.bad_receptors_qa ${final_prefix}bad_receptors_qa
