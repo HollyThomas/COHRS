@@ -21,8 +21,8 @@
 
 #  Prior Requirments:
 #     - The COHRS environment variables COHRS_FILELISTS, COHRS_SCRIPTS,
-#     and COHRS_TILED must be defined and point to the appropriate
-#     locations.
+#     COHRS_REDUCED, and COHRS_TILED must be defined and point to the
+#     appropriate locations.
 #     - $COHRS_FILELISTS should contain the lists of PPV cubes to tile
 #     in each mosaic and have names ending "mosaic.txt".
 #     - $COHRS_TILED should contain the PPV cubes to be mosaicked.
@@ -63,8 +63,13 @@ foreach f ( `ls -1 $COHRS_FILELISTS/*mosaic.txt` )
 # To avoid confusion over the PPV NDFs' origin times, apply trimming and
 # alter the alignment Standard of Rest on copied NDFs.  Take care to
 # avoid appending suffix used by the PICARD recipe, such as _al.
+# Loop rather than use indirection file because we want to restricti
+# the velocity range.
    set suffix = "_trim"
-   ndfcopy in=^$f"(,,-30.0:155.0)" out=\*$suffix
+   foreach file ( `cat $f` )
+      set ndf = $file:r
+      ndfcopy in=$COHRS_REDUCED/$ndf"(,,-64.0:186.0)" out=./\*$suffix
+   end
 
 # Create a new list of files to process.
    sed -e s/.sdf/${suffix}.sdf/ $f > alignedlist.txt
