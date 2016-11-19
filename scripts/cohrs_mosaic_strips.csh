@@ -51,6 +51,7 @@
 #-
 
 cd $COHRS_TILED
+setenv ORAC_DATA_OUT $COHRS_TILED
 kappa >>/dev/null
 
 \rm -f alignedlist.txt
