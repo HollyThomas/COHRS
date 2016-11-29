@@ -48,6 +48,6 @@ system("$ENV{KAPPA_DIR}/setaxis ${outfile} mode=lin dim=2");
 #system("$ENV{KAPPA_DIR}/setaxis ${outfile}_2d mode=exp dim=2 expr=\"\'INDEX\'\" accept");
 system("$ENV{KAPPA_DIR}/erase ${outfile}.wcs ok=yes accept");
 print "converting to fits...\n";
-system("/star/bin/convert/ndf2fits ${outfile} out=!${outfile}.fits accept");
+system("$ENV{CONVERT_DIR}/ndf2fits ${outfile} out=!${outfile}.fits accept");
 
 }
