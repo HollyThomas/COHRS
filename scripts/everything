@@ -1,10 +1,27 @@
-BNF = baseline not flat
-rms is average amplitude or about 4o
+Velocity ranges:
+  non-lin -- region to exclude from non-linearity tests;
+  moments -- limits over which to calculate moments;
+  flat    -- limits over which to derive flat field;
+  <blank> -- means used the default of COHRS_R2.ini,
+             non-lin & moments -30:155, flat -15:145.
 
-09.75  0.25    -45:180  -38:173   1.6:26.7    .  .
-09.75 -0.25
-10.12  0.00    -45:120  -40:110 -13.4:50.7   ?  BNF 0.05/<<rms. 5th?
-10.50  0.00    -40:190  -33:186   5.6:44.6      BNF 0.02/rms 4th
+Flatfield quality:
+  X  -- no flat;
+  ?? -- poorly determined flat; }
+  ?  -- marginal flat;          } (F prefix indicates used but should be redone)
+  <blank> -- flat applied.
+
+Notes:
+  BNF = baseline not flat
+  rms is average amplitude or about 4 sigma.
+
+                     Velocity ranges       flat
+Field          non-lin  moments    flat     QA  Notes
+09.75  0.25    -25:100  -38:173   1.6:32.2
+                                 48.0:51.0
+09.75 -0.25    -30:102  -27:135 -18.4:78.5      BNF weak ripple 0.0/<rms >140
+10.12  0.00    -25:100  -40:110 -13.4:50.7  F?  BNF 0.05/<<rms. 5th?
+10.50  0.00    -25:170  -33:186 -18.8:78.0      BNF 0.02/rms 4th
 11.00  0.00    -27:175  -40:166  -3.4:46.7
 11.50 -0.00    -50:180  -42:176  -1.4:57.7
 12.00  0.37    -40:90   -34:81   13.7:34.7      BNF 0.02/<rms 4th
