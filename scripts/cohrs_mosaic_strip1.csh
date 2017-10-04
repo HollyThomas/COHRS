@@ -31,7 +31,7 @@
 #     - $COHRS_TILED should contain the PPV cubes to be mosaicked.
 
 #   Notes:
-#     - The velocity range extracted is -30 to 155 km/s.
+#     - The velocity range extracted is -64 to 186 km/s.
 
 #  Output:
 #     All output is created in $COHRS_TILED.
@@ -52,6 +52,8 @@
 #        per NDF.  Use *mosaic.txt file lists instead of the *trim.txt,
 #        which list the untrimmed files.  Then make the trimmed file
 #        lists on the fly.
+#     2017 October 4 (MJC)
+#        Extend velocity limits from those of Release 1 for Release 2.
 #     {enter_further_changes_here}
 
 #-
@@ -79,7 +81,7 @@ foreach f ( `cat $mosaiclist` )
 # alter the alignment Standard of Rest on copied NDFs.  Take care to
 # avoid appending suffix used by the PICARD recipe, such as _al.
    set suffix = "_trim"
-   ndfcopy in=$COHRS_REDUCED/$f"(,,-30.0:155.0)" out=$COHRS_TILED/\*$suffix
+   ndfcopy in=$COHRS_REDUCED/$f"(,,-64:186.0)" out=$COHRS_TILED/\*$suffix
 end
 
 # Create a new list of files to process.
