@@ -34,6 +34,9 @@
 #     inner1mosaic.txt would generate a PPV mosaic called inner1mosaic.sdf.
 #     - A PICARD .picard<XXXX> log for each mosaic.
 
+#   Notes:
+#     - The velocity range extracted is -64 to 186 km/s.
+
 #  Authors:
 #     MJC: Malcolm J. Currie (RAL)
 #     {enter_new_authors_here}

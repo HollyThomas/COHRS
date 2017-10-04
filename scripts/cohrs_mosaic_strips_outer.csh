@@ -28,6 +28,9 @@
 #     in each mosaic and have names ending "mosaic.txt".
 #     - $COHRS_TILED should contain the PPV cubes to be mosaicked.
 
+#   Notes:
+#     - The velocity range extracted is -64 to 186 km/s.
+
 #  Output:
 #     All output is created in $COHRS_TILED.
 #     - A mosaic for each $COHRS_FILELISTS/*mosaic.txt given the same
