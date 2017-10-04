@@ -17,7 +17,7 @@
 #     This script runs a series of groups of COHRS position-position-
 #     velocity (PPV) cubes through the PICARD recipe MOSAIC_JCMT_IMAGES
 #     to form a series of mosaics.  Along the way it also ensures that
-#     the mosaics are alligned in the LSRK Standard of Rest.
+#     the mosaics are aligned in the LSRK Standard of Rest.
 
 #  Prior Requirments:
 #     - The COHRS environment variables COHRS_FILELISTS, COHRS_SCRIPTS,
