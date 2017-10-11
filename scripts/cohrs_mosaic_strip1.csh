@@ -101,8 +101,8 @@ picard --recpars $COHRS_SCRIPTS/mosaic.ini -log f MOSAIC_JCMT_IMAGES `cat aligne
 # Find the name of the mosaic just created.
 set mosname = `ls -1t $COHRS_TILED/*_mos.sdf | head -n 1`
 
-Form output PPV cube name, removing COHRS_FILELISTS's path.
-set outname = `echo $f:t | sed -e s/.txt/.sdf/`
+# Form output PPV cube name, removing COHRS_FILELISTS's path.
+set outname = `echo $mosaiclist:t | sed -e s/.txt/.sdf/`
 
 # Rename the PPV mosaic to the name actually wanted.
 mv $mosname $outname
