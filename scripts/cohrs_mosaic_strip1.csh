@@ -81,7 +81,7 @@ foreach f ( `cat $mosaiclist` )
 # alter the alignment Standard of Rest on copied NDFs.  Take care to
 # avoid appending suffix used by the PICARD recipe, such as _al.
    set suffix = "_trim"
-   ndfcopy in=$COHRS_REDUCED/$f"(,,-64:186.0)" out=$COHRS_TILED/\*$suffix
+   ndfcopy in=$COHRS_REDUCED/$f"(,,-64.0:186.0)" out=$COHRS_TILED/\*$suffix
 end
 
 # Create a new list of files to process.
