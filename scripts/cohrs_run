@@ -31,6 +31,9 @@
 #  Notes:
 #     -  It uses the ulaula stable build to get recent fixes yet
 #     offer stability if /stadrev is rebuilt.
+#     -  It enforces use of the REDUCE_SCIENCE_NARROWLINE recipe.  This
+#     became necessary because the unsuitable REDUCE_SCIENCE_LINEFOREST
+#     recipe was chosen in the CHIMPS2 MSBs.
 #     -  The recipes parameters come from the file
 #     /home/mjc/cohrs/recpars_{longitude}_${latitude}.ini if a region-specific
 #     set is available, otherwise taken from the generic recpars-COHRS_R2.ini,
@@ -115,6 +118,8 @@
 #        Allow different fields to use a field-specific set of
 #        parameters, but default to the generic if the specific does not
 #        exist.  Document the input file naming conventions.
+#     2018 July 10 (MJC):
+#        Only run with the REDUCE_SCIENCE_NARROWLINE recipe.
 #     {enter_further_changes_here}
 
 #-
@@ -238,8 +243,8 @@ echo " "
 echo "Setup ORAC-DR for UT ${utdate}."
 
 echo "Running ORAC-DR with the following command:"
-echo "oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup"
-oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup
+echo "oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE"
+oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE
 
 # Rename key products.
 # ====================
