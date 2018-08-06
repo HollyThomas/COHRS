@@ -8,6 +8,7 @@ cohrs_run 11.50 -0.00 >>& 10s_R2.log
 cohrs_run 12.00  0.37 >>& 10s_R2.log
 cohrs_run 12.00 -0.00 >>& 10s_R2.log
 cohrs_run 12.00 -0.37 >>& 10s_R2.log
+cohrs_run 12.50  0.37 >>& 10s_R2.log
 cohrs_run 12.50  0.00 >>& 10s_R2.log
 cohrs_run 12.50 -0.37 >>& 10s_R2.log
 cohrs_run 13.00  0.00 >>& 10s_R2.log
