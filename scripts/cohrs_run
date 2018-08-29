@@ -42,19 +42,23 @@
 #     -  It enforces use of the REDUCE_SCIENCE_NARROWLINE recipe.  This
 #     became necessary because the unsuitable REDUCE_SCIENCE_LINEFOREST
 #     recipe was chosen in the CHIMPS2 MSBs.
+#     - Paths to input file lists and recipe parameters are prefixed by
+#     the COHRS environment variable, which, if undefined, defaults to
+#     /surveys/cohrs.
 #     -  The recipes parameters come from the file
-#     /home/mjc/cohrs/recpars_{longitude}_${latitude}.ini if a region-specific
+#     $COHRS/recpars/recpars_{longitude}_${latitude}.ini if a region-specific
 #     set is available, otherwise taken from the generic recpars-COHRS_R2.ini,
 #     where the supplied longitude and latitude arguments are used to derive
 #     strings for the position tokens.  The {latitude} string should include
 #     a leading + sign if north of the Galactic Plane and is formatted
 #     5.2f; {longitude} is formatted 6.2f.  Finally each string has "p"
-#     replacing the decimal point.  An example would be
-#     /home/mjc/cohrs/recpars-COHRS_057p50_+0p24.ini.
+#     replacing the decimal point.  If $COHRS is undefined, it defaults to
+#     /surveys/cohrs.  An example would be
+#     /surveys/cohrs/COHRS/recpars/recpars-COHRS_057p50_+0p24.ini.
 #     -  Lists of the files to process in each region are stored in files
-#     of the form /home/mjc/cohrs/gal_{longtiude}_{latitude}.list, where
+#     of the form $COHRS/filelists/gal_{longitude}_{latitude}.list, where
 #     the tokens are the same as for the recipe files.  The equivalent
-#     example is /home/mjc/cohrs/gal_057p50_+0p24.list.
+#     example is /surveys/cohrs/COHRS/filelists/gal_057p50_+0p24.list.
 
 #  Output:
 #     All the final NDF products have the prefix COHRS_<L>_<B>_
@@ -129,6 +133,8 @@
 #     2018 July 10 (MJC):
 #        Only run with the REDUCE_SCIENCE_NARROWLINE recipe.
 #     2018 August 28 (MJC):
+#        Use $COHRS and subdirectories for paths to the filelists and
+#        recpar files.
 #        Add debug option.
 #     {enter_further_changes_here}
 
@@ -192,9 +198,11 @@ else
    set sign = "+"
 endif
 
-# Obtain the file name.
-setenv COHRS /home/mjc/cohrs
-set flist = "$COHRS/gal_${longp}_${sign}${latp}.list"
+# Obtain the file name, but first specify the path.
+if ( ! $?COHRS ) then
+   setenv COHRS /surveys/cohrs/COHRS
+endif
+set flist = "$COHRS/filelists/gal_${longp}_${sign}${latp}.list"
 
 # Check that the file exists, allowing for the default latitude
 # or the user entering 0 when the latitude is -0.
@@ -206,7 +214,7 @@ if ( ! -e $flist ) then
          set signf = "+"
       endif
 
-      set flists = "$COHRS/gal_${longp}_${signf}${latp}.list"
+      set flists = "$COHRS/filelists/gal_${longp}_${signf}${latp}.list"
       if ( ! -e $flists ) then
          echo "Unable to file list of observations for l=$long b=$lat."
          echo "Neither $flist"
@@ -225,8 +233,8 @@ echo "Using file $flist for the list of observations."
 
 # Find the recipe parameter file.  Some regions require special
 # velocity limits or not have flatfielding due to low signal.
-set recpar = "$COHRS/recpars-COHRS_${longp}_${sign}${latp}.ini"
-if ( ! -e $recpar ) set recpar = "$COHRS/recpars-COHRS_R2.ini"
+set recpar = "$COHRS/recpars/recpars-COHRS_${longp}_${sign}${latp}.ini"
+if ( ! -e $recpar ) set recpar = "$COHRS/recpars/recpars-COHRS_R2.ini"
 echo "Obtain recipe parameters from $recpar."
 
 # Extract the UT date and observation number from the first line in
