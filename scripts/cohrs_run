@@ -136,6 +136,7 @@
 #        Use $COHRS and subdirectories for paths to the filelists and
 #        recpar files.
 #        Add debug option.
+#        Validate the co-ordinates.
 #     {enter_further_changes_here}
 
 #-
@@ -155,7 +156,7 @@ set oracdr_debug = 0
 
 #  Check that a longitude was supplied.
 if ( $#argv == 0 ) then
-   echo "Usage: cohrs_run -l longitude"
+   echo "Usage: cohrs_run longitude latitude"
    exit
 endif
 
@@ -169,7 +170,6 @@ if ( $#argv > 0 ) then
    set lat = $argv[1]
 endif
 
-# Validate the longitude. TBD.
 if ( $#argv > 0 ) then
    set oracdr_debug = $argv[1]
    if ( ! ( $oracdr_debug == 1 || $oracdr_debug == 0 ) ) then
@@ -177,6 +177,21 @@ if ( $#argv > 0 ) then
    endif
 endif
 
+# Validate the co-ordinates.
+set valid_long = `echo $long | awk '{print($long>9.74&&$long<62.51)}'`
+set valid_lat = `echo $lat | awk '{print($lat>-0.41&&$lat<0.41)}'`
+
+if ( ! $valid_long ) then
+   echo "Longitude ($lat) is not within the survey ranges."
+endif
+
+if ( ! $valid_long ) then
+   echo "Latitude ($lat) is not within the survey range."
+endif
+
+if ( ! $valid_long || ! $valid_lat ) then
+   exit
+endif
 
 # Extract information from the file list.
 # =======================================
