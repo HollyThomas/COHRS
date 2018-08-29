@@ -24,6 +24,9 @@
 #     latitude
 #        The galactic latitude to the nearest hundreth of a degree,
 #        e.g. 0.30.  [0.00]
+#     debug
+#        If true, run oracdr debug mode.  It defaults to false if
+#        supplied value is not 1 (true) or 0 (false).  [0]
 
 #  Examples:
 #     cohrs_run 10.5
@@ -125,6 +128,8 @@
 #        exist.  Document the input file naming conventions.
 #     2018 July 10 (MJC):
 #        Only run with the REDUCE_SCIENCE_NARROWLINE recipe.
+#     2018 August 28 (MJC):
+#        Add debug option.
 #     {enter_further_changes_here}
 
 #-
@@ -140,6 +145,7 @@ unalias echo
 #  Initialize shell variables.
 set long = -1
 set lat = 0.0
+set oracdr_debug = 0
 
 #  Check that a longitude was supplied.
 if ( $#argv == 0 ) then
@@ -158,6 +164,12 @@ if ( $#argv > 0 ) then
 endif
 
 # Validate the longitude. TBD.
+if ( $#argv > 0 ) then
+   set oracdr_debug = $argv[1]
+   if ( ! ( $oracdr_debug == 1 || $oracdr_debug == 0 ) ) then
+       set oracdr_debug = 0
+   endif
+endif
 
 
 # Extract information from the file list.
@@ -248,8 +260,13 @@ echo " "
 echo "Setup ORAC-DR for UT ${utdate}."
 
 echo "Running ORAC-DR with the following command:"
-echo "oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE"
-oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE
+if ( $oracdr_debug == 1 ) then
+   echo "oracdr -files $flist -nodisplay -debug -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE"
+   oracdr -files $flist -nodisplay -debug -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE
+else
+   echo "oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE"
+   oracdr -files $flist -nodisplay -log f -recpars $recpar -calib bad_receptors=index -onegroup REDUCE_SCIENCE_NARROWLINE
+endif
 
 # Rename key products.
 # ====================
