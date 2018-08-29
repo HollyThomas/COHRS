@@ -141,6 +141,15 @@
 
 #-
 
+# Setup Starlink definitions.
+# ===========================
+
+# Use a stable build for stability during long jobs.  If /stardev is
+# rebuilt during processing, it causes a READSOCK and a running job to
+# fail.
+source /home/mjc/bin/stablestar
+source /home/mjc/bin/localorac.csh
+
 # Conceal the startup messages.  KAPPA is needed for the CALC command.
 alias echo "echo > /dev/null"
 source $KAPPA_DIR/kappa.csh
@@ -272,7 +281,8 @@ set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
 # =================
 
 # Use a stable build for stability during long jobs.  If /stardev is
-# rebuilt it causes a READSOCK and a running job to fail.
+# rebuilt duuring processing, it causes a READSOCK and a running job to
+# fail.
 source /home/mjc/bin/stablestar
 source /home/mjc/bin/localorac.csh
 
