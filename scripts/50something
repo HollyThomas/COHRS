@@ -13,6 +13,7 @@ cohrs_run 51.50  0.00 >>& 50s_R2.log
 cohrs_run 51.50  0.25 >>& 50s_R2.log
 cohrs_run 51.50 -0.25 >>& 50s_R2.log
 cohrs_run 51.75 -0.25 >>& 50s_R2.log
+cohrs_run 52.13 -0.25 >>& 50s_R2.log
 cohrs_run 52.25  0.25 >>& 50s_R2.log
 cohrs_run 52.50  0.24 >>& 50s_R2.log
 cohrs_run 52.50 -0.24 >>& 50s_R2.log
