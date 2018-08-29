@@ -23,12 +23,16 @@
 #     tile -- the name of the mosaic, e.g. inner1, middle2.
 
 #  Prior Requirments:
-#     - The COHRS environment variables COHRS_FILELISTS, COHRS_SCRIPTS,
-#     and COHRS_TILED must be defined and point to the appropriate
-#     locations.
+#     - The COHRS environment variables COHRS_FILELISTS, COHRS_REDUCED,
+#     COHRS_SCRIPTS, and COHRS_TILED must be defined and point to the
+#     appropriate locations.
 #     - $COHRS_FILELISTS should contain the lists of PPV cubes to tile
 #     in each mosaic and have names ending "mosaic.txt".
-#     - $COHRS_TILED should contain the PPV cubes to be mosaicked.
+#     - $COHRS_REDUCED should contain (or have softlink to) the PPV cubes
+#     to be mosaicked.
+#     - $COHRS_SCRIPTS should contain mosaic.ini, which sets the
+#     recipe parameters for the PICARD recipe MOSAIC_JCMT_IMAGES.
+#     - $COHRS_TILED is the destination directory for the resultant mosaic.
 
 #   Notes:
 #     - The velocity range extracted is -64 to 186 km/s.
@@ -54,6 +58,9 @@
 #        lists on the fly.
 #     2017 October 4 (MJC)
 #        Extend velocity limits from those of Release 1 for Release 2.
+#     2018 August 28 (MJC):
+#        Add explanation of roles of $COHRS_REDUCED and $COHRS_SCRIPTS
+#        environmental variables in Prior Requirements.
 #     {enter_further_changes_here}
 
 #-
@@ -71,6 +78,7 @@ endif
 
 \rm -f alignedlist.txt
 set mosaiclist = "$COHRS_FILELISTS/${1}mosaic.txt"
+set suffix = "_trim"
 
 # The list of PPV NDFs to combine into which mosaics are given in the
 # filelists like inner3mosaic.txt, middle2mosaic.txt, and outer1mosaic.txt.
