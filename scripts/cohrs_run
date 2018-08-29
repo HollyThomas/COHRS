@@ -18,7 +18,12 @@
 #     unwanted files.
 
 #  Arguments:
-#     The galactic longitude and latitude.  The latter defaults to 0.0.
+#     longitude
+#        The galactic longitude to the nearest hundrethth of a degree, e.g.
+#        16.88.
+#     latitude
+#        The galactic latitude to the nearest hundreth of a degree,
+#        e.g. 0.30.  [0.00]
 
 #  Examples:
 #     cohrs_run 10.5
@@ -29,8 +34,8 @@
 #        latitude -0.37 degrees.
 
 #  Notes:
-#     -  It uses the ulaula stable build to get recent fixes yet
-#     offer stability if /stadrev is rebuilt.
+#     -  It uses a stable build to get recent fixes yet offer stability if
+#     /stardev is rebuilt.
 #     -  It enforces use of the REDUCE_SCIENCE_NARROWLINE recipe.  This
 #     became necessary because the unsuitable REDUCE_SCIENCE_LINEFOREST
 #     recipe was chosen in the CHIMPS2 MSBs.
@@ -57,7 +62,8 @@
 #     -  The reduced spectral cube has suffix CUBE.
 #     -  An integ collapsed image with INTEG suffix.
 #     -  A longitude-velocity image with an LV suffix.
-#     -  A 1 km/s velocity rebinned cube with suffix CUBE_REBIN.
+#     -  A cube velocity rebinned to 1 km/s resolution cube with suffix
+#     CUBE_REBIN.
 #
 #     The following non-NDFs are created too.  These have the same
 #     prefix as the NDFs.
@@ -70,11 +76,10 @@
 
 #  Deficiencies:
 #     - Does not exit cleanly if the pipeline fails.
-#     - Does not rename the ORAC-DR log file to the COHRS format,
-#       because it is not known unambigously.
 
 #  Copyright:
-#     Copyright (C) 2012-2013, 2015 Science and Technology Facilities Council.
+#     Copyright (C) 2012-2013, 2015, 2018 Science and Technology
+#     Facilities Council.
 #     All Rights Reserved.
 
 #  Licence:
