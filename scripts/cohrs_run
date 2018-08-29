@@ -280,12 +280,6 @@ set obsstring = `echo $obsnum | awk '{printf(substr($1 + 100000, 2, 5))}'`
 # Run the pipeline.
 # =================
 
-# Use a stable build for stability during long jobs.  If /stardev is
-# rebuilt duuring processing, it causes a READSOCK and a running job to
-# fail.
-source /home/mjc/bin/stablestar
-source /home/mjc/bin/localorac.csh
-
 # Setup ORAC-DR.  The date is arbitrary as we obtain the files from a
 # GRP text file, but since we know the date, let's use it.
 oracdr_acsis $utdate
