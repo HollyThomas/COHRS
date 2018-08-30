@@ -20,12 +20,19 @@
 #     the mosaics are aligned in the LSRK Standard of Rest.
 
 #  Prior Requirments:
-#     - The COHRS environment variables COHRS_FILELISTS, COHRS_SCRIPTS,
-#     COHRS_REDUCED, and COHRS_TILED must be defined and point to the
+#     - The COHRS environment variables COHRS_FILELISTS, COHRS_REDUCED,
+#     COHRS_SCRIPTS, and COHRS_TILED must be defined and point to the
 #     appropriate locations.
 #     - $COHRS_FILELISTS should contain the lists of PPV cubes to tile
 #     in each mosaic and have names ending "mosaic.txt".
-#     - $COHRS_TILED should contain the PPV cubes to be mosaicked.
+#     - $COHRS_REDUCED should contain (or have softlink to) the PPV cubes
+#     to be mosaicked.
+#     - $COHRS_SCRIPTS should contain mosaic.ini, which sets the
+#     recipe parameters for the PICARD recipe MOSAIC_JCMT_IMAGES.
+#     - $COHRS_TILED is the destination directory for the resultant mosaic.
+
+#   Notes:
+#     - The velocity range extracted is -64 to 186 km/s.
 
 #  Output:
 #     All output is created in $COHRS_TILED.
@@ -33,9 +40,6 @@
 #     name except the file extension changes from "txt" to "sdf".  For example,
 #     inner1mosaic.txt would generate a PPV mosaic called inner1mosaic.sdf.
 #     - A PICARD .picard<XXXX> log for each mosaic.
-
-#   Notes:
-#     - The velocity range extracted is -64 to 186 km/s.
 
 #  Authors:
 #     MJC: Malcolm J. Currie (RAL)
@@ -49,6 +53,11 @@
 #        per NDF.  Use *mosaic.txt file lists instead of the *trim.txt,
 #        which list the untrimmed files.  Then make the trimmed file
 #        lists on the fly.
+#     2017 October 4 (MJC)
+#        Extend velocity limits from those of Release 1 for Release 2.
+#     2018 August 28 (MJC):
+#        Add explanation of roles of $COHRS_REDUCED and $COHRS_SCRIPTS
+#        environmental variables in Prior Requirements.
 #     {enter_further_changes_here}
 
 #-
