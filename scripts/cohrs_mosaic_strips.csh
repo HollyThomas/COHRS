@@ -33,6 +33,10 @@
 
 #   Notes:
 #     - The velocity range extracted is -64 to 186 km/s.
+#     - The pre-2018 data were taken in upper side band.  The later
+#     observations under CHIMPS2 auspices were observed in the lower
+#     side band.  The latter are flipped along the psectral axis before
+#     mosaic formation.
 
 #  Output:
 #     All output is created in $COHRS_TILED.
@@ -56,6 +60,7 @@
 #     2017 October 4 (MJC)
 #        Extend velocity limits from those of Release 1 for Release 2.
 #     2018 August 28 (MJC):
+#        Flip the spectral axis for USB side band.
 #        Add explanation of roles of $COHRS_REDUCED and $COHRS_SCRIPTS
 #        environmental variables in Prior Requirements.
 #     {enter_further_changes_here}
@@ -73,15 +78,28 @@ kappa >>/dev/null
 foreach f ( `ls -1 $COHRS_FILELISTS/*mosaic.txt` )
    echo $f
 
-# To avoid confusion over the PPV NDFs' origin times, apply trimming and
-# alter the alignment Standard of Rest on copied NDFs.  Take care to
-# avoid appending suffix used by the PICARD recipe, such as _al.
-# Loop rather than use indirection file because we want to restricti
-# the velocity range.
    set suffix = "_trim"
    foreach file ( `cat $f` )
       set ndf = $file:r
-      ndfcopy in=$COHRS_REDUCED/$ndf"(,,-64.0:186.0)" out=./\*$suffix
+      echo "   $ndf"
+
+# Obtain the side band.
+      set sideband = `fitsval $COHRS_REDUCED/$f OBS_SB`
+
+# Reverse the spectral axis for the upper side band.
+      if ( "sideband" == "USB" ) then
+         flip in=$COHRS_REDUCED/$ndf out=\*_flip dim=3
+
+# To avoid confusion over the PPV NDFs' origin times, apply trimming and
+# alter the alignment Standard of Rest on copied NDFs.  Take care to
+# avoid appending suffix used by the PICARD recipe, such as _al.
+# Loop, rather than use the indirection file, because we want to restrict
+# the velocity range.
+         ndfcopy in=${ndf}_flip"(,,-64.0:186.0)" out=$COHRS_TILED/*"|_flip|$suffix|"
+         rm ${ndf}_flip.sdf
+      else
+         ndfcopy in=$COHRS_REDUCED/$ndf"(,,-64.0:186.0)" out=$COHRS_TILED/\*$suffix
+      endif
    end
 
 # Create a new list of files to process.
