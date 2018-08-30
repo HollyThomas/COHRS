@@ -115,7 +115,7 @@ sed -e s/.sdf/${suffix}.sdf/ $mosaiclist > alignedlist.txt
 # by default uses Heliocentric Standard of Rest for alignment.  [This
 # offset in line velocity was reported by Yangsu 2014 November 11 and
 # the cause identified by MJC.]  This SoR gives rise to progressively
-# shifted line velocities the further from the spaitial centre of the
+# shifted line velocities the further from the spatial centre of the
 # first contributing cube a spectrum is located.
 wcsattrib ndf=^alignedlist.txt mode=set name=AlignStdOfRest newval=LSRK
 
