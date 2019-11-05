@@ -240,7 +240,7 @@ if ( ! -e $flist ) then
 
       set flists = "$COHRS/filelists/gal_${longp}_${signf}${latp}.list"
       if ( ! -e $flists ) then
-         echo "Unable to file list of observations for l=$long b=$lat."
+         echo "Unable to find list of observations for l=$long b=$lat."
          echo "Neither $flist"
          echo "nor $flists exist."
          exit
