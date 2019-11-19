@@ -177,6 +177,7 @@ endif
 
 if ( $#argv > 0 ) then
    set lat = $argv[1]
+   shift argv
 endif
 
 if ( $#argv > 0 ) then
