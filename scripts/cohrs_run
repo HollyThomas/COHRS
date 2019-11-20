@@ -328,6 +328,12 @@ set final_integ = ${final_prefix}"INTEG.sdf"
 mv $integ $final_integ
 echo "Created integrated image ${final_integ}."
 
+# the noise map, ...
+set noise = ${group_prefix}"noise.sdf"
+set final_noise = ${final_prefix}"NOISE.sdf"
+mv $noise $final_noise
+echo "Created noise image ${final_noise}."
+
 # the rimg thumbnail, ...
 set thumbnail = ${group_prefix}"rimg_256.png"
 set final_thumbnail = ${final_prefix}"rimg_256.png"
@@ -397,7 +403,6 @@ end
 # Remove the unwanted group files.
 \rm -f ${group_prefix}cube*.sdf
 \rm -f ${group_prefix}iwc.sdf
-#\rm -f ${group_prefix}noise.sdf
 #\rm -f ${group_prefix}rimg.sdf
 #\rm -f ${group_prefix}rimg_1024.png
 \rm -f ${group_prefix}rimg_64.png
