@@ -77,12 +77,14 @@ kappa >>/dev/null
 
 \rm -f alignedlist.txt
 
+set suffix = "_trim"
+set fsuffix = "_flip"
+
 # The list of PPV NDFs to combine into which mosaics are given in the
 # filelists like inner3mosaic.txt, middle2mosaic.txt, and outer1mosaic.txt.
 foreach f ( `ls -1 $COHRS_FILELISTS/*mosaic_R2n.txt` )
    echo $f
 
-   set suffix = "_trim"
    foreach file ( `cat $f` )
       set ndf = $file:r
       echo "   $ndf"
@@ -92,15 +94,16 @@ foreach f ( `ls -1 $COHRS_FILELISTS/*mosaic_R2n.txt` )
 
 # Reverse the spectral axis for the lower side band.
       if ( "$sideband" == "LSB" ) then
-         flip in=$COHRS_REDUCED/$ndf out=\*_flip dim=3
+         set flipped = ${ndf}${fsuffix}
+         flip in=$COHRS_REDUCED/$ndf out=$flipped dim=3
 
 # To avoid confusion over the PPV NDFs' origin times, apply trimming and
 # alter the alignment Standard of Rest on copied NDFs.  Take care to
 # avoid appending suffix used by the PICARD recipe, such as _al.
 # Loop, rather than use the indirection file, because we want to restrict
 # the velocity range.
-         ndfcopy in=$COHRS_REDUCED/${ndf}_flip\(,-0.51:0.51,-200.0:300.0\) out=$COHRS_TILED/"*|_flip|$suffix|"
-         rm $COHRS_REDUCED//${ndf}_flip.sdf
+         ndfcopy in=$flipped"(,-0.51:0.51,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|"
+         rm ${flipped}.sdf
       else
          ndfcopy in=$COHRS_REDUCED/$ndf"(,-0.51:0.51,-200.0:300.0)" out=$COHRS_TILED/\*$suffix
       endif
