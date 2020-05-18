@@ -90,11 +90,11 @@ else if ( $#args >= 1 ) then
 #  Process each of the arguments to the script.
    set tile = $args[1]
 
-   set llong = ""
-   set ulong = ""
+   set llon = ""
+   set ulon = ""
    if ( $#args == 3 ) then
-      set llong = $args[2]
-      set ulong = $args[3]
+      set llon = $args[2]
+      set ulon = $args[3]
    endif
 endif
 
@@ -113,28 +113,40 @@ foreach f ( `cat $mosaiclist` )
 
 # Obtain the longitude bounds.
    ndftrace $COHRS_REDUCED/$ndf >> /dev/null
+   set flbnd = `parget flbnd ndftrace`
+   set fubnd = `parget fubnd ndftrace`
 
-   set valid = 1
-   if ( $llong != "" ) then
-      set flbnd = `parget flbnd ndftrace`
-      set fubnd = `parget fubnd ndftrace`
 
-# Set the lower and upper longittude bands so as to not widen
+# Set the lower and upper longitude bands so as to not widen
 # the extent of each tessara.  So for one not at the longitudinal
-# ends, the bounds are unchanged.   The trimming occurs at the ends.
-      set tlb = `calc exp="180.0*$flbnd[1]/pi"` 
-      set tub = `calc exp="180.0*$fubnd[1]/pi"`
-      set llb = `calc exp="max($llong,180.0*$flbnd[1]/pi)"` 
-      set lub = `calc exp="min($ulong,180.0*$fubnd[1]/pi)"`
+# ends, the bounds are unchanged.  The trimming occurs at the ends.
+   if ( $llon != "" ) then
+      set tlonlb = `calc exp="180.0*$flbnd[1]/pi"`
+      set tlonub = `calc exp="180.0*$fubnd[1]/pi"`
 
-      set longb = "${llb}d:${lub}d"
-      echo "Section: ${tlb}:$tub  Trimmed: $longb"
-      set valid = `calc exp="qif($lub>$llb,1,0)"`
+      set lonlb = `calc exp="max($llon,$tlonlb)"`
+      set lonub = `calc exp="min($ulon,$tlonub)"`
+
+      set lonrange = "${lonlb}d:${lonub}d"
+      echo "Lon section: ${tlonlb}:$tlonub"
    else
-      set abridged = ( $abridged $ndf )
-      set longb = ""
+      set lonrange = ""
    endif
 
+# Set the lower and upper latitude bands so as to not widen
+# the extent of each tessara.  So for one not at the longitudinal
+# ends, the bounds are unchanged.  The trimming occurs at the north
+#and south.
+   set tlatlb = `calc exp="180.0*($flbnd[2])/pi"`
+   set tlatub = `calc exp="180.0*($fubnd[2])/pi"`
+   set latlb = `calc exp="max(-0.51,$tlatlb)"`
+   set latub = `calc exp="min(0.51,$tlatub)"`
+
+   set latrange = "${latlb}d:${latub}d"
+   echo "Lat section: ${tlatlb}:$tlatub"
+   echo "Trimmed: $lonrange, $latrange"
+
+   set valid = `calc exp="'qif(($lonub>$lonlb)&&(($latub)>($latlb)),1,0)'"`
    if ( $valid == 1 ) then
 
 # Obtain the side band.
@@ -148,12 +160,12 @@ foreach f ( `cat $mosaiclist` )
 # To avoid confusion over the PPV NDFs' origin times, apply trimming and
 # alter the alignment Standard of Rest on copied NDFs.  Take care to
 # avoid appending suffix used by the PICARD recipe, such as _al.
-         ndfcopy in=$flipped"($longb,-0.501d:0.501d,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|" trim trimwcs" 
-echo '$flipped"($longb,-0.501:0.501,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|"
+         ndfcopy in=$flipped"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|" trim trimwcs"
+echo '$flipped"($lonrange,-0.501d:0.501d,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix| trim trimwcs"
                   rm ${flipped}.sdf
       else
-         ndfcopy in=$COHRS_REDUCED/$ndf"($longb,-0.501d:0.501d,-200.0:300.0)" out=$COHRS_TILED/\*$suffix trim trimwcs
-echo 'ndfcopy in=$COHRS_REDUCED/$ndf"($longb,-0.501:0.501,-200.0:300.0)" out=$COHRS_TILED/\*$suffix'
+         ndfcopy in=$COHRS_REDUCED/$ndf"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*$suffix trim trimwcs
+echo 'ndfcopy in=$COHRS_REDUCED/$ndf"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*$suffix trim trimwcs'
       endif
 
       set outndf = `echo "$ndf$suffix"`
