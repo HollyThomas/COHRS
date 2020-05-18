@@ -106,7 +106,7 @@ set fsuffix = "_flip"
 set abridged = ()
 
 # The list of PPV NDFs to combine into which mosaics are given in the
-# filelists like inner3mosaic.txt, middle2mosaic.txt, and outer1mosaic.txt.
+# filelists like 40mosaic_R2n.txt and 15mosaic_R2n.txt.
 foreach f ( `cat $mosaiclist` )
    echo $f
    set ndf = $f:r
