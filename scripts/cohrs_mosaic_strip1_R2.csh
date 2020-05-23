@@ -116,38 +116,54 @@ foreach f ( `cat $mosaiclist` )
    set flbnd = `parget flbnd ndftrace`
    set fubnd = `parget fubnd ndftrace`
 
-
 # Set the lower and upper longitude bands so as to not widen
 # the extent of each tessara.  So for one not at the longitudinal
 # ends, the bounds are unchanged.  The trimming occurs at the ends.
+   set lonvalid = 1
+   set lonrange = ""
    if ( $llon != "" ) then
-      set tlonlb = `calc exp="180.0*$flbnd[1]/pi"`
-      set tlonub = `calc exp="180.0*$fubnd[1]/pi"`
+      set flonlb = `calc exp="180.0*$flbnd[1]/pi" prec=_double`
+      set flonub = `calc exp="180.0*$fubnd[1]/pi" prec=_double`
 
-      set lonlb = `calc exp="max($llon,$tlonlb)"`
-      set lonub = `calc exp="min($ulon,$tlonub)"`
+      set fulllon = `calc exp="'qif(($flonlb>$llon)&&($flonub<$ulon),1,0)'" prec=_double`
+      if ( $fulllon == 0 ) then
+         set lonvalid = `calc calc exp="'qif(($flonlb>$ulon)||($flonub<$llon),0,1)'" prec=_double`
+         if ( $lonvalid == 1 ) then
+            set lonlb = `calc exp="max($llon,$flonlb)" prec=_double`
+            set lonub = `calc exp="min($ulon,$flonub)" prec=_double`
 
-      set lonrange = "${lonlb}d:${lonub}d"
-      echo "Lon section: ${tlonlb}:$tlonub"
-   else
-      set lonrange = ""
+            set lonrange = "${lonlb}d:${lonub}d"
+         endif
+      endif
+      echo "Input lon section: ${flonlb}:$flonub"
    endif
 
 # Set the lower and upper latitude bands so as to not widen
-# the extent of each tessara.  So for one not at the longitudinal
+# the extent of each tessara.  So for one not at the latitudinal
 # ends, the bounds are unchanged.  The trimming occurs at the north
-#and south.
-   set tlatlb = `calc exp="180.0*($flbnd[2])/pi"`
-   set tlatub = `calc exp="180.0*($fubnd[2])/pi"`
-   set latlb = `calc exp="max(-0.51,$tlatlb)"`
-   set latub = `calc exp="min(0.51,$tlatub)"`
+# and south.
+   set latrange = ""
+   set latvalid = 1
+   set flatlb = `calc exp="180.0*($flbnd[2])/pi" prec=_double`
+   set flatub = `calc exp="180.0*($fubnd[2])/pi" prec=_double`
+   set llat = -0.502
+   set ulat = 0.502
 
-   set latrange = "${latlb}d:${latub}d"
-   echo "Lat section: ${tlatlb}:$tlatub"
+   set fulllat = `calc exp="'qif((($flatlb)>($llat))&&($flatub<$ulat),1,0)'" prec=_double`
+   if ( $fulllat == 0 ) then
+      set latvalid = `calc exp="'qif((($flatlb)>$ulat)||($flatub<($llat)),0,1)'" prec=_double`
+      if ( $latvalid == 1 ) then
+         set latlb = `calc exp="max($llat,$flatlb)" prec=_double`
+         set latub = `calc exp="min($ulat,$flatub)" prec=_double`
+
+         set latrange = "${latlb}d:${latub}d"
+      endif
+   endif
+   echo "Input lat section: ${flatlb}:$flatub"
+
    echo "Trimmed: $lonrange, $latrange"
 
-   set valid = `calc exp="'qif(($lonub>$lonlb)&&(($latub)>($latlb)),1,0)'"`
-   if ( $valid == 1 ) then
+   if ( $lonvalid == 1 && $latvalid == 1 ) then
 
 # Obtain the side band.
       set sideband = `fitsval $COHRS_REDUCED/$ndf OBS_SB`
@@ -160,8 +176,8 @@ foreach f ( `cat $mosaiclist` )
 # To avoid confusion over the PPV NDFs' origin times, apply trimming and
 # alter the alignment Standard of Rest on copied NDFs.  Take care to
 # avoid appending suffix used by the PICARD recipe, such as _al.
-         ndfcopy in=$flipped"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|" trim trimwcs"
-echo '$flipped"($lonrange,-0.501d:0.501d,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix| trim trimwcs"
+         ndfcopy in=$flipped"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|" trim trimwcs
+echo '$flipped"($lonrange,-0.501d:0.501d,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|" trim trimwcs'
                   rm ${flipped}.sdf
       else
          ndfcopy in=$COHRS_REDUCED/$ndf"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*$suffix trim trimwcs
