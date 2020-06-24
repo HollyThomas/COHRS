@@ -135,7 +135,6 @@ foreach f ( `cat $mosaiclist` )
             set lonrange = "${lonlb}d:${lonub}d"
          endif
       endif
-      echo "Input lon section: ${flonlb}:$flonub"
    endif
 
 # Set the lower and upper latitude bands so as to not widen
@@ -159,9 +158,6 @@ foreach f ( `cat $mosaiclist` )
          set latrange = "${latlb}d:${latub}d"
       endif
    endif
-   echo "Input lat section: ${flatlb}:$flatub"
-
-   echo "Trimmed: $lonrange, $latrange"
 
    if ( $lonvalid == 1 && $latvalid == 1 ) then
 
@@ -177,11 +173,9 @@ foreach f ( `cat $mosaiclist` )
 # alter the alignment Standard of Rest on copied NDFs.  Take care to
 # avoid appending suffix used by the PICARD recipe, such as _al.
          ndfcopy in=$flipped"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|" trim trimwcs
-echo '$flipped"($lonrange,-0.501d:0.501d,-200.0:300.0)" out=$COHRS_TILED/\*"|$fsuffix|$suffix|" trim trimwcs'
-                  rm ${flipped}.sdf
+         rm ${flipped}.sdf
       else
          ndfcopy in=$COHRS_REDUCED/$ndf"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*$suffix trim trimwcs
-echo 'ndfcopy in=$COHRS_REDUCED/$ndf"($lonrange,$latrange,-200.0:300.0)" out=$COHRS_TILED/\*$suffix trim trimwcs'
       endif
 
       set outndf = `echo "$ndf$suffix"`
