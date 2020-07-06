@@ -1,0 +1,471 @@
+gal_009p75_-0p25.list
+gal_009p75_-0p25.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_009p75_+0p25.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_010p50_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_011p00_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_011p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_012p00_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_012p00_-0p37.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_012p00_+0p37.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_012p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_012p50_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_012p50_-0p37.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_012p50_+0p37.list
+PROJECT = 'M17BL004'           / Project code
+gal_013p00_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number  x5
+PROJECT = 'M11AU12 '           / PATT number
+gal_013p00_+0p37.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_013p00_-0p40.list
+PROJECT = 'M13AU41 '           / PATT number  x3
+PROJECT = 'M14AU09 '           / PATT number
+gal_013p00_+0p40.list
+PROJECT = 'M12AU42 '           / PATT number
+PROJECT = 'M13AU41 '           / PATT number
+gal_013p50_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_014p00_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_014p00_-0p37.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_014p00_+0p37.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_014p50_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_015p00_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_015p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number  x10
+PROJECT = 'M11AU12 '           / PATT number
+gal_016p00_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_016p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_016p85_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_016p88_-0p40.list
+PROJECT = 'M17BL004'           / PATT number
+gal_017p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_017p00_+0p38.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_017p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_017p50_-0p37.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_017p75_+0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_018p00_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_018p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_018p50_-0p37.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_018p50_+0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_019p00_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_019p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_019p50_-0p37.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_019p50_+0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_020p00_-0p00.list
+gal_021p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M13AU41 '           / PATT number
+gal_021p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_021p50_-0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_021p50_+0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_022p00_+0p00.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_022p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_022p50_-0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_022p50_+0p38.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_023p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_023p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_023p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_023p50_+0p38.list
+PROJECT = 'M17BL004'           / Project code
+gal_024p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_024p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_024p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_024p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_025p00_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_025p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_025p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_025p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_026p00_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_026p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_026p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_026p50_-0p38.list
+PROJECT = 'M13AU41 '           / PATT number  x3
+PROJECT = 'M17BL004'           / Project code
+gal_027p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_027p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_027p50_-0p37.list
+PROJECT = 'M13BN02 '           / PATT number  x2
+PROJECT = 'M14AU09 '           / PATT number
+gal_027p50_+0p38.list
+PROJECT = 'M13BN02 '           / PATT number
+PROJECT = 'M13BN02 '           / PATT number
+PROJECT = 'M13BN02 '           / PATT number
+PROJECT = 'M13BN02 '           / PATT number
+gal_028p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_028p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x3
+PROJECT = 'M11AD02 '           / PATT number
+gal_028p50_-0p37.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_028p50_+0p37.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_029p00_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_029p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_029p50_-0p37.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_029p50_+0p37.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_030p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_030p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_030p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_030p50_-0p38.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_031p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_031p50_+0p00.list
+PROJECT = 'M11AD02 '           / PATT number
+gal_031p50_-0p38.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_031p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_031p88_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_032p00_-0p00.list
+PROJECT = 'M11AD02 '           / PATT number
+gal_032p50_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_032p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_032p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_033p00_+0p00.list
+PROJECT = 'M11AD02 '           / PATT number
+gal_033p12_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_033p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_033p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_033p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_034p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_034p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_034p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_034p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_035p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_035p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_035p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_035p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_036p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_036p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_036p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_036p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_037p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_037p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_037p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_037p50_-0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_038p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_038p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number
+gal_038p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_038p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_039p00_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_039p50_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_039p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_039p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_040p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number  x6
+PROJECT = 'M11AD02 '           / PATT number  x3
+PROJECT = 'M12AU42 '           / PATT number
+gal_040p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_040p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_040p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_041p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_041p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_041p50_-0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_041p50_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_042p00_-0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_042p38_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_042p38_-0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+PROJECT = 'M14AU09 '           / PATT number
+gal_042p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_043p00_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_043p00_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_043p00_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_043p15_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_043p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_044p13_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_044p50_-0p38.list
+PROJECT = 'M17BL004'           / Project code
+gal_044p50_+0p38.list
+PROJECT = 'M17BL004'           / Project code
+gal_044p88_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_045p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_045p85_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_045p87_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_045p87_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_046p50_+0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_046p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_046p50_-0p38.list
+PROJECT = 'M17BL004'           / Project code
+gal_047p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_047p50_-0p38.list
+PROJECT = 'M17BL004'           / Project code
+gal_047p50_+0p38.list
+PROJECT = 'M17BL004'           / Project code
+gal_048p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number  x5
+PROJECT = 'M11AU12 '           / PATT number
+gal_048p50_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_048p50_+0p37.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_049p50_-0p00.list
+PROJECT = 'M10AU20 '           / PATT number
+gal_049p50_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_049p50_-0p38.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_050p10_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_050p10_-0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_050p50_+0p00.list
+PROJECT = 'M09BD02 '           / PATT number  x10
+PROJECT = 'M11AU12 '           / PATT number
+gal_050p75_-0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_050p75_+0p38.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_050p88_+0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_050p90_-0p37.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_051p25_-0p25.list
+PROJECT = 'M09BJ01 '           / PATT number
+gal_051p50_+0p00.list
+PROJECT = 'M11AU12 '           / PATT number
+gal_051p50_-0p25.list
+PROJECT = 'M09BJ01 '           / PATT number
+gal_051p50_+0p25.list
+PROJECT = 'M09BJ01 '           / PATT number
+gal_051p75_-0p25.list
+PROJECT = 'M09BJ01 '           / PATT number
+gal_052p13_-0p25.list
+PROJECT = 'M17BL004'           / Project code
+gal_052p25_+0p25.list
+PROJECT = 'M09BJ01 '           / PATT number
+gal_052p50_-0p24.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_052p50_+0p24.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_052p67_+0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_053p00_-0p00.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_053p00_-0p24.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_053p00_+0p24.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_053p13_-0p38.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_053p50_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_053p50_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x10
+PROJECT = 'M13AU41 '           / PATT number
+gal_054p00_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_054p00_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x12
+PROJECT = 'M12AD02 '           / PATT number
+gal_054p50_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_054p50_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_055p00_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_055p00_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_055p16_+0p86.list
+PROJECT = 'M12AU42 '           / PATT number x6
+PROJECT = 'M14AU09 '           / PATT number
+gal_055p50_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_055p50_+0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_056p00_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_056p00_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number
+gal_056p50_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x12
+PROJECT = 'M12AD02 '           / PATT number
+gal_056p50_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x6
+PROJECT = 'M12AD02 '           / PATT number  x6
+PROJECT = 'M12AU42 '           / PATT number
+gal_057p00_-0p24.list
+PROJECT = 'M13AU41 '           / PATT number
+gal_057p00_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x6
+PROJECT = 'M12AD02 '           / PATT number
+gal_057p50_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x6
+PROJECT = 'M12AD02 '           / PATT number
+gal_057p50_+0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x12
+PROJECT = 'M13AU41 '           / PATT number
+gal_058p00_-0p24.list
+PROJECT = 'M12AU42 '           / PATT number  x6
+PROJECT = 'M13AU41 '           / PATT number
+gal_058p00_+0p24.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_058p50_-0p24.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_058p50_+0p24.list
+PROJECT = 'M13BN02 '           / PATT number  x4
+PROJECT = 'M14AU09 '           / PATT number
+gal_059p00_-0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_059p00_+0p24.list
+PROJECT = 'M13BN02 '           / PATT number
+gal_059p50_-0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_059p50_+0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_060p00_-0p24.list
+PROJECT = 'M12AD02 '           / PATT number  x6
+PROJECT = 'M14AU09 '           / PATT number
+gal_060p00_+0p24.list
+PROJECT = 'M12AD02 '           / PATT number
+gal_060p50_-0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_060p50_+0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_061p00_-0p24.list
+PROJECT = 'M13BN02 '           / PATT number  x4
+PROJECT = 'M14AU09 '           / PATT number
+gal_061p00_+0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_061p50_-0p24.list
+PROJECT = 'M13BN02 '           / PATT number  x5
+PROJECT = 'M14AU09 '           / PATT number
+gal_061p50_+0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_062p00_-0p24.list
+PROJECT = 'M14AU09 '           / PATT number
+gal_062p00_+0p24.list
+PROJECT = 'M14AU09 '           / PATT number
