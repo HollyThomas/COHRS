@@ -16,6 +16,7 @@ cohrs_run 22.50 -0.38 >>& 20s_R2.log
 cohrs_run 23.00 -0.00 >>& 20s_R2.log
 cohrs_run 23.50  0.00 >>& 20s_R2.log
 cohrs_run 23.50 -0.37 >>& 20s_R2.log
+cohrs_run 23.50  0.38 >>& 20s_R2.log
 cohrs_run 24.00 -0.00 >>& 20s_R2.log
 cohrs_run 24.50  0.00 >>& 20s_R2.log
 cohrs_run 24.50  0.38 >>& 20s_R2.log
