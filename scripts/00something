@@ -1,5 +1,5 @@
 #!/bin/csh
-alias cohrs_run ~mjc/cohrs/cohrs_run
+alias cohrs_run /surveys/cohrs/COHRS/scripts/cohrs_run2018
 rm -f 00s_R2.log
 cohrs_run 09.75  0.25  >& 00s_R2.log
 cohrs_run 09.75 -0.25 >>& 00s_R2.log
