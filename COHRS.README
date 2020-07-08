@@ -1,0 +1,95 @@
+The main reduction and post-processing scripts, file lists, and
+recipe-parameter files are stored in a github.com repository 
+https://github.com/HollyThomas/COHRS.  You should have read access.
+
+The repository was mostly up-to-date apart from the reduction script, 
+which had some changes from 2017 not in the repository, now corrected.
+
+
+Preliminaries: 
+--------------
+
+a) Create text files listing raw data for each tile.  This uses a
+master list (allobsbyposition.txt) of observations. Output text files
+are called gal_<long>_<lat>.list with decimal points replaced by "p",
+e.g. gal_020p50_-0p38.list.
+
+A different scheme could be used to organise the CHIMPS2 reductions.
+[I suppose it ought to be possible to create this accessing the
+OMP---don't ask what the API might be---but as far as I recall Holly
+and/or Jess created a database of observations manually, with
+scripting to bring in other metadata.  Later we generated the neater
+allobsbyposition.txt file.]
+
+b) Create recipe-parameter files.  We used the REDUCE_SCIENCE_NARROWLINE
+recipe.  I suggest you take a look at some of these found the recpars/
+directory.
+
+1) There are parameters to attempt removal of reference-spectrum
+absorption lines, where needed.  I inspected the reduced cubes
+averaging over most of the spatial pixels looking for the tell-tale
+signs.  I didn't want unnecessary processing and certainly none that
+might not be appropriate.
+
+# Reference-spectrum removal
+#
+CLUMP_METHOD=clumpfind
+SUBTRACT_REF_EMISSION = 1
+REF_EMISSION_MASK_SOURCE = both
+REF_EMISSION_COMBINE_REFPOS = 1
+REF_EMISSION_BOXSIZE = 19
+
+This is still not working as well as I would like---the time taken to
+process a variety of locales (like extended emission), blends, signal
+strength to test ideas was long and we wanted to produce a better
+version of COHRS for Erik Rosolowsky and his student Dario Columbo.
+A change to tackle a problem would sometimes undermine working line
+removal.  It probably needs an expert system.   Still for many cases
+it worked well removing the lines or the bulk of their signal.
+
+All that said if the CHIMPS2 reference points are chosen carefully we
+could have fewer issues withe reference contamination.
+
+2) Flat-fielding: This essentially applies the Curtis-Buckle approach
+but only over ranges of velocity where the signal warrants the
+summation, not diluted by noise.  You just supply a comma-separated
+list.  Automated methods didn't work as well.  It also combines all
+the subfiles in an observation to improve the flat-field estimation.
+These are typical parameters.
+
+#
+# Flatfield receptors
+#
+FLATFIELD = 1
+FLAT_METHOD = sum
+FLAT_REGIONS = 4.2:72.4,110.6:125.9
+
+FLAT_REGIONS permits a comma-separated list.  [FLAT_LOWER_VELOCITY and
+FLAT_IPPER_VELOCITY are deprecated.]
+
+
+Reductions:
+-----------
+
+This uses a script, which sets up various things for the reduction but
+in essence invokes the regular ORAC-DR with the appropriate
+recipe-parameter file (e.g. recpars-COHRS_020p50_-0p38.ini), renames
+the products we want to keep and deletes unwanted files.
+
+    cohrs_run <longitude> <latitude>
+
+
+Post-processing:
+----------------
+
+a) Create mosaics from the PPV cubes, divided into sections.  There are too many
+voxels in the full dataset to process with HDS V4 to form a single mosaic.
+
+    cohrs_mosaic_strips.csh  (or cohrs_mosaic_strip1.csh for a single mosaic strip,
+                              or cohrs_mosaic_strips_middle.csh for middle mosaic strips
+                              or cohrs_mosaic_strips_outer.csh for outer mosaic strips)
+
+b) Extract uniform 0.5 degree (longitude) by 1.0 (latitude) sections
+from the mosaics made by cohrs_mosaic_strips.csh.
+    cohrs_tiles.pl
+
