@@ -25,11 +25,11 @@ GetOptions( 'version=s', \$version );
 my ( $infile, $outfile );
 
 my $inc_long = 0.5;
-my $long = 9.75;
+my $long = 10.0;
 
 while ( $long < 62.5 ) {
 
-# Set latitude limts for the north (n) and south (s) tiles.
+# Set latitude limits for the north (n) and south (s) tiles.
    my $lat_1 = -0.5;
    my $lat_2 = 0.5;
 
@@ -43,44 +43,44 @@ while ( $long < 62.5 ) {
    $name_1 =~ s/\./p/;
    $outfile = join( "", "$ENV{COHRS_TILED}", "/COHRS_", $name_1, "_0p00_CUBE_3T2_", $version );
 
-# Find the input filename from the various mosaics. 
+# Find the input filename from the various mosaics.
     if ( $long > 9.7 && $long < 15.1 ) {
        $infile = "$ENV{COHRS_TILED}/15mosaic_R2n";
 
     } elsif ( $long > 14.9 && $long < 20.1 ) {
-       $infile = "$ENV{COHRS_TILED}/20mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/20mosaic_sl_R2n";
 
     } elsif ( $long > 19.9 && $long < 25.1 ) {
-       $infile = "$ENV{COHRS_TILED}/25mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/25mosaic_sl_R2n";
 
     } elsif ( $long > 24.9 && $long < 30.1 ) {
-       $infile = "$ENV{COHRS_TILED}/30mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/30mosaic_sl_R2n";
 
     } elsif ( $long > 29.9 && $long < 35.1 ) {
-       $infile = "$ENV{COHRS_TILED}/35mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/35mosaic_sl_R2n";
 
     } elsif ( $long > 34.9 && $long < 40.1 ) {
-       $infile = "$ENV{COHRS_TILED}/40mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/40mosaic_sl_R2n";
 
     } elsif ( $long > 39.9 && $long < 45.1 ) {
-       $infile = "$ENV{COHRS_TILED}/45mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/45mosaic_sl_R2n";
 
     } elsif ( $long > 44.9 && $long < 50.1 ) {
-       $infile = "$ENV{COHRS_TILED}/50mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/50mosaic_sl_R2n";
 
     } elsif ( $long > 49.9 && $long < 55.1 ) {
-       $infile = "$ENV{COHRS_TILED}/55mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/55mosaic_sl_R2n";
 
     } elsif ( $long > 54.9 && $long < 60.1 ) {
-       $infile = "$ENV{COHRS_TILED}/60mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/60mosaic_sl_R2n";
 
     } elsif ( $long > 59.9 && $long < 62.1 ) {
-       $infile = "$ENV{COHRS_TILED}/62mosaic_R2n";
+       $infile = "$ENV{COHRS_TILED}/62mosaic_sl_R2n";
     }
 
 # Extract the tiles.
     print "$long $lat_1 $lat_2 $long_1 $long_2 $name_1 $outfile\n";
-    system( "$ENV{KAPPA_DIR}/ndfcopy in=$infile\'($long_1:$long_2,$lat_1:$lat_2,)\' out=$outfile exten" ); 
+    system( "$ENV{KAPPA_DIR}/ndfcopy in=$infile\'($long_1:$long_2,$lat_1:$lat_2,-200.0:300.0)\' out=$outfile exten" );
 
     $long += 0.5;
 }
