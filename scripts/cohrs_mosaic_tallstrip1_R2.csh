@@ -56,22 +56,8 @@
 #     {enter_new_authors_here}
 
 #  History:
-#     2016 April 25 (MJC):
-#        Original version.
-#     2016 April 27 (MJC):
-#        Form the velocity trimmed tiles.  This saves an extra NDFCOPY
-#        per NDF.  Use *mosaic.txt file lists instead of the *trim.txt,
-#        which list the untrimmed files.  Then make the trimmed file
-#        lists on the fly.
-#     2017 October 4 (MJC)
-#        Extend velocity limits from those of Release 1 for Release 2.
-#     2018 August 28 (MJC):
-#        Flip the spectral axis for USB side band.
-#        Add explanation of roles of $COHRS_REDUCED and $COHRS_SCRIPTS
-#        environmental variables in Prior Requirements.
-#     2020 May 13 (MJC):
-#        Adapted from the original cohrs_mosaic_strip1.csh, having a
-#        wider velocity range and restricted latitude range for Release 2.
+#     2022 September 9  (MJC):
+#        Original version based upon cohrs_mosaic_strip1_R2.csh.
 #     {enter_further_changes_here}
 
 #-
