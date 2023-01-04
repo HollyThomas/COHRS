@@ -1,0 +1,8 @@
+recpars-COHRS*.ini.?
+recpars-COHRS*.ini.?[Va-z]*
+recpars-COHRS*.iniV7*
+recpars-COHRS*.inir*
+recpars-COHRS*.ini.??
+.history*
+*.dev
+restore_xterm*
